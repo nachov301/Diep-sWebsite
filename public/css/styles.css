@@ -15,6 +15,23 @@ hr{
   width: 100px;
   margin: 10px auto;
 }
+.card-text{
+  min-height: 96px;
+  min-width: 246px;
+}
+.card-img-top{
+  min-height: 213px;
+  min-width: 286px;
+}
+.date{
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  z-index: 100;
+  background-color: #a6b1e1;
+  /* starts from top-left in a clockwise direction */
+  border-radius: 0 0 15px 0;
+}
 .categories{
   display: flex;
 }
@@ -175,6 +192,7 @@ background-image: url("/files/buda.jpg");
 .card-post{
   display: inline-block;
   margin: 10px 10px;
+  width: 18rem;
 }
 .white-background{
   margin: 0;
@@ -195,4 +213,41 @@ background-image: url("/files/buda.jpg");
   position: relative;
   bottom: 100px;
   width: 100%;
+}
+@media (max-width: 1000px) {
+  .white-background{
+    margin: 0;
+    padding: 2% 0;
+    width: 100%;
+    background-image: url("/files/meditation.jpg");
+    /* these two lines make the image being fixed so its not gonna move when i scroll */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+}
+.card-post{
+  display: inline-block;
+  margin: 10px 10px;
+  width: 12rem;
+}
+.category-items{
+  display: inline-block;
+  width: 25%;
+  height: 200px;
+  padding: 0;
+  margin: 0;
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.card-text{
+  font-size: 10px;
+  margin: 0 auto;
+  min-width: 20px;
+  min-height: 50px;
+
+}
+.p-items{
+  display: none;
+}
 }

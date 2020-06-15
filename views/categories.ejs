@@ -1,0 +1,46 @@
+<%-include("partials/header")%>
+
+<div class="container-fluid banner-container">
+  <img class="banner" src="/files/banner.jpg" alt="">
+</div>
+
+<div class="container-fluid new-posts">
+  <h1 class="title"><%=title%></h1>
+
+  <div class="container-fluid">
+
+    <%posts.forEach(function(post){%>
+
+    <div class="card card-post" style="width: 18rem;">
+      <div class="boundaries">
+        <div class="date">
+          <p class="date-text"><%=post.date%></p>
+        </div>
+        <%console.log(post.url);%>
+        <% if(post.url.length < 1){%>
+          <img class="card-img-top zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
+        <%}else{%>
+          <img class="card-img-top zoom" src=<%=post.url%> alt="Card image cap">
+        <%}%>
+      </div>
+      <div class="card-body">
+        <%if(post.title.length > 10){%>
+        <h5 class="card-title"><%=post.title.substring(0, 10) + "...";%></h5>
+        <%}else{%>
+        <h5 class="card-title"><%=post.title%></h5>
+        <%}%>
+    <%if(post.content.length > 100){%>
+        <p class="card-text"><%=post.content.substring(0, 100) + "..."%></p>
+        <%}else{%>
+        <p class="card-text"><%=post.content%></p>
+        <%}%>
+        <form class="" action="/post" method="post">
+          <button class="btn btn-primary btn-lg" type="submit" name="id" value=<%=post._id%>>Check post</button>
+        </form>
+  </div>
+</div>
+
+        <% }); %>
+      </div>
+
+<%-include("partials/footer")%>

@@ -13,14 +13,13 @@
   <div class="container-fluid introduction">
     <h2 class="title">Lời Giới Thiệu</h2>
     <div class="introduction-text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec feugiat in fermentum posuere urna. Nunc eget lorem dolor sed viverra. Aliquam vestibulum morbi blandit cursus
-        risus at. Consectetur a erat nam at lectus urna duis.</p>
+      <p>Risus in hendrerit gravida rutrum quisque non tellus orci. Massa vitae tortor condimentum lacinia quis. Sed lectus vestibulum mattis ullamcorper velit. Tempor nec feugiat nisl pretium. Libero justo laoreet sit amet cursus sit amet. Scelerisque varius morbi enim nunc faucibus a pellentesque. Non nisi est sit amet facilisis.</p>
     </div>
   </div>
 
   <!-- ==============================================Categories====================================================== -->
 
-  <div class="container-fluid">
+  <div id="categories" class="container-fluid">
     <div class="categories">
 
       <div class="category-items img1">
@@ -28,7 +27,9 @@
           <h3 class="title-items">Timeline</h3>
           <hr>
           <p class="p-items">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <button class="btn-primary btn-lg" type="button" name="button">Go to category</button>
+          <form class="" action="/timeline" method="post">
+            <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
+          </form>
         </div>
         <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
       </div>
@@ -37,7 +38,9 @@
           <h3 class="title-items">Hand</h3>
           <hr>
           <p class="p-items">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <button class="btn-primary btn-lg" type="button" name="button">Go to category</button>
+          <form class="" action="/hand" method="post">
+            <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
+          </form>
         </div>
         <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
       </div>
@@ -46,7 +49,9 @@
           <h3 class="title-items">Thoughts</h3>
           <hr>
           <p class="p-items">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <button class="btn-primary btn-lg" type="button" name="button">Go to category</button>
+          <form class="" action="/thoughts" method="post">
+            <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
+          </form>
         </div>
         <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
       </div>
@@ -55,7 +60,9 @@
           <h3 class="title-items">My journey</h3>
           <hr>
           <p class="p-items">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <button class="btn-primary btn-lg" type="button" name="button">Go to category</button>
+          <form class="" action="/journey" method="post">
+            <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
+          </form>
         </div>
         <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
       </div>
@@ -64,16 +71,29 @@
 
   <!-- ===========================================NewPosts============================================================ -->
 
-  <div class="container-fluid new-posts">
+  <div id="newPost" class="container-fluid new-posts">
     <h2 class="title">Bài Viết Mới</h2>
 
     <div class="container-fluid white-background">
+      <%var cont = posts.length-4;%>
+      <%var cont2 = 0%>
 
       <%posts.forEach(function(post){%>
 
-      <div class="card card-post" style="width: 18rem;">
+      <%cont2++%>
+      <%if(cont2>cont){%>
+
+      <div class="card card-post">
         <div class="boundaries">
-          <img class="card-img-top zoom" src="https://www.shoutmeloud.com/wp-content/uploads/2015/10/Benefits-of-meditation-1024x768.jpg" alt="Card image cap">
+          <div class="date">
+            <p class="date-text"><%=post.date%></p>
+          </div>
+          <%console.log(post.url);%>
+          <% if(post.url.length < 1){%>
+            <img class="card-img-top zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
+          <%}else{%>
+            <img class="card-img-top zoom" src=<%=post.url%> alt="Card image cap">
+          <%}%>
         </div>
         <div class="card-body">
           <%if(post.title.length > 10){%>
@@ -86,16 +106,20 @@
           <%}else{%>
           <p class="card-text"><%=post.content%></p>
           <%}%>
-      <a href="#" class="btn btn-primary">Check post</a>
+          <form class="" action="/post" method="post">
+            <button class="btn btn-primary btn-lg" type="submit" name="id" value=<%=post._id%>>Check post</button>
+          </form>
     </div>
   </div>
 
-  <% }); %>
+<%}%>
+
+          <% }); %>
         </div>
 
         <!-- ===========================================Writter======================================================== -->
 
-        <div class="container-fluid">
+        <div id="writter" class="container-fluid">
           <h2 class="title">Writter</h2>
           <div class="writter-container container-fluid">
             <img class="writter-img" src="/files/writter.jpg" alt="">
