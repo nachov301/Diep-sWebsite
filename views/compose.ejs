@@ -1,0 +1,21 @@
+<%-include("partials/header")%>
+
+<body>
+  <div class="container-fluid compose-container">
+    <form class="" action="/compose" method="post">
+
+      <div class="form-group compose-text">
+        <label for="">Enter post title</label>
+        <input type="text" name="postTitle" value="">
+      </div>
+      <div class="form-group compose-text">
+        <label for="">Enter post text</label>
+        <textarea name="postText" rows="8" cols="80"></textarea>
+      </div>
+      <button class="btn-primary btn-lg btn-submit" type="submit" name="button">Submit</button>
+
+    </form>
+  </div>
+</body>
+
+<%-include("partials/footer")%>
