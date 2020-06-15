@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/diep', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://nachov301:Leavemealone3930@cluster0-ix6bg.mongodb.net/diep', {useNewUrlParser: true, useUnifiedTopology: true});
 
 const app = express();
 
@@ -152,6 +152,13 @@ app.post("/compose", function(req, res){
 
 });
 
-app.listen(3000, function(){
-  console.log("listening on port 3000");
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+
+app.listen(port, function(){
+  console.log("server has started successfully");
 });
