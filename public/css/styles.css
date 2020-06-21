@@ -269,6 +269,27 @@ hr {
 }
 
 @media (max-width: 1000px) {
+  .intro-p{
+    font-size: 4rem;
+  }
+  .introduction-text {
+    width: 100%;
+    padding: 20px;
+    color: black;
+    margin: auto;
+  }
+  .banner-container {
+    height: 1000px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .banner {
+    position: relative;
+    bottom: 100px;
+    width: 100%;
+    height: 100%;
+  }
   .white-background {
     margin: 0;
     padding: 2% 0;
@@ -282,8 +303,15 @@ hr {
 
   .card-post {
     display: inline-block;
-    margin: 10px 10px;
-    width: 12rem;
+    margin: 20px 10px;
+    width: 26rem;
+    height: 50rem;
+  }
+  .btn-card{
+    font-size: 2rem;
+    margin-top: 20px;
+    width: 20rem;
+    height: 5rem;
   }
 
   .category-items {
@@ -295,12 +323,18 @@ hr {
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
-
+  .card-title{
+    font-size: 4rem;
+  }
   .card-text {
-    font-size: 10px;
+    font-size: 25px;
     margin: 0 auto;
     min-width: 20px;
     min-height: 50px;
+  }
+  .card-img-top {
+    min-height: 413px;
+    min-width: 486px;
   }
 
   .p-items {
@@ -309,6 +343,7 @@ hr {
   .categories{
     display: inline-block;
     width: 100%;
+    background-color: black;
   }
   .category-items {
     display: inline-block;
@@ -318,5 +353,14 @@ hr {
     margin: auto;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+  }
+  .title {
+    margin: 50px auto;
+    font-family: "Montserrat", cursive;
+    font-weight: 600;
+    font-size: 6rem;
+    text-align: center;
+    color: #a6b1e1;
+    text-decoration: underline;
   }
 }
