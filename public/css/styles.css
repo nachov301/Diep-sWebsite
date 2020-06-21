@@ -1,29 +1,35 @@
-body{
- background-color: white;
+body {
+  background-color: white;
 }
-label{
+
+label {
   display: block;
 }
-footer{
+
+footer {
   background-color: #a6b1e1;
   padding: 30px;
   text-align: left;
 }
-hr{
+
+hr {
   border: none;
   border-top: 5px dotted #f4eeff;
   width: 100px;
   margin: 10px auto;
 }
-.card-text{
+
+.card-text {
   min-height: 96px;
   min-width: 246px;
 }
-.card-img-top{
+
+.card-img-top {
   min-height: 213px;
   min-width: 286px;
 }
-.date{
+
+.date {
   position: absolute;
   width: 100px;
   height: 30px;
@@ -32,83 +38,107 @@ hr{
   /* starts from top-left in a clockwise direction */
   border-radius: 0 0 15px 0;
 }
-.categories{
+
+.categories {
   display: flex;
 }
+
 /* i defined my animation here like this */
-@keyframes fade-in{
-  from {opacity: 0;}
-  to {opacity: 1; }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
-.category-items{
+
+.category-items {
   display: inline-block;
   width: 25%;
   height: 300px;
   padding: 0;
   margin: 0;
-
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-.img1{
-background-image: url("/files/timeline.jpg");
+
+.img1 {
+  background-image: url("/files/timeline.jpeg");
 }
-.img2{
-background-image: url("/files/hand.jpg");
+
+.img2 {
+  background-image: url("/files/hand.jpeg");
 }
-.img3{
-background-image: url("/files/thoughts.jpg");
+
+.img3 {
+  background-image: url("/files/thoughts.jpeg");
 }
-.img4{
-background-image: url("/files/buda.jpg");
+
+.img4 {
+  background-image: url("/files/buda.jpeg");
 }
-.btn-lg{
+
+.btn-primary {
+  font-size: 0.8rem;
   background-color: #424874;
+  color: #fff;
   border: 1px solid #424874;
-  border-radius: 15px;
+  border-radius: 30px;
 }
+
 /* by setting the display to 0 i make the element invisible */
-.text-items{
+.text-items {
   display: none;
-  background-color: #a6b1e1;
+  background-image: url("/files/timelineBackground.jpg");
+  background-size: 100% 100%;
   height: 100%;
   width: 100%;
   text-align: center;
 }
+
 /* when .category-items class is hover it will make the .text-items class visible, i use > because that class is inside the .category-items class */
-.category-items:hover > .text-items{
+.category-items:hover>.text-items {
   display: block;
-  background-image: none;
+  /* background-image: none; */
   /* in here im calling the animation fade-in that i defined before */
   animation: fade-in 0.8s;
 }
-.category-img{
+
+.category-img {
   width: 100%;
   height: 100%;
 }
-.title-items{
-  padding: 10%;
-  text-decoration: underline;
+
+.title-items {
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 3.5rem;
+  padding: 20%;
 }
-.p-items{
+
+.p-items {
   padding: 4%;
 }
+
 /* .category-img{
   background-color: #fff;
   z-index: -1;
 } */
-.img-items{
+.img-items {
   width: 100%;
   height: 300px;
   padding: 0;
   margin: 0;
 }
-.footer{
+
+.footer {
   background-color: #a6b1e1;
   width: 100%;
   height: 100%;
 }
-.writter-name-container{
+
+.writter-name-container {
   position: relative;
   bottom: 50px;
   left: 120px;
@@ -117,7 +147,8 @@ background-image: url("/files/buda.jpg");
   z-index: 100;
   border-radius: 15px;
 }
-.writter-container{
+
+.writter-container {
   margin: 20px;
   text-align: left;
   width: 300px;
@@ -126,35 +157,44 @@ background-image: url("/files/buda.jpg");
   border-radius: 15px;
   overflow: hidden;
 }
-.writter-img{
+
+.writter-img {
   width: 300px;
   transition: transform 3.2s;
 }
-.writter-img:hover{
+
+.writter-img:hover {
   transform: scale(1.5);
 }
 
-.boundaries{
+.boundaries {
   /* we set overflow hidden so when the things inside the div cant come out */
   overflow: hidden;
 }
-.zoom{
-  transition: transform 3.2s; /* Animation and time it takes for the animation to happen */
+
+.zoom {
+  transition: transform 3.2s;
+  /* Animation and time it takes for the animation to happen */
 }
-.zoom:hover{
-  transform: scale(1.5); /* how much its gonna scale, in this case 150% */
+
+.zoom:hover {
+  transform: scale(1.5);
+  /* how much its gonna scale, in this case 150% */
 }
-.new-posts{
+
+.new-posts {
   text-align: center;
 }
-.introduction{
+
+.introduction {
   margin: 50px auto;
   font-family: "Montserrat", cursive;
   font-weight: 600;
   text-align: center;
   color: #a6b1e1;
 }
-.title{
+
+.title {
   margin: 50px auto;
   font-family: "Montserrat", cursive;
   font-weight: 600;
@@ -162,39 +202,50 @@ background-image: url("/files/buda.jpg");
   color: #a6b1e1;
   text-decoration: underline;
 }
-.introduction-text{
+
+.introduction-text {
   width: 500px;
   color: black;
   margin: auto;
 }
-.container-fluid{
+
+.container-fluid {
   padding: 0;
 }
-.navbar{
-  background-color: transparent !important;
+
+.navbar {
+  /* The ! important property in CSS means that all subsequent rules on an element are to be ignored,
+  and the rule denoted by ! important is to be applied. */
+  background: rgba(238,210,238,0.6) !important;
   position: fixed;
   top: 0;
   margin: 0;
   width: 100%;
+  height: 70px;
   z-index: 100;
 }
-.compose-container{
+
+.compose-container {
   margin: 10% auto;
 }
-.compose-text{
+
+.compose-text {
   display: block;
   text-align: center;
 }
-.btn-submit{
+
+.btn-submit {
   display: block;
   margin: 15px auto;
 }
-.card-post{
+
+.card-post {
   display: inline-block;
   margin: 10px 10px;
   width: 18rem;
 }
-.white-background{
+
+.white-background {
   margin: 0;
   padding: 2% 0;
   width: 100%;
@@ -204,18 +255,21 @@ background-image: url("/files/buda.jpg");
   background-attachment: fixed;
   background-size: 100%;
 }
-.banner-container{
+
+.banner-container {
   height: 600px;
   overflow: hidden;
   margin-bottom: 20px;
 }
-.banner{
+
+.banner {
   position: relative;
   bottom: 100px;
   width: 100%;
 }
+
 @media (max-width: 1000px) {
-  .white-background{
+  .white-background {
     margin: 0;
     padding: 2% 0;
     width: 100%;
@@ -223,31 +277,46 @@ background-image: url("/files/buda.jpg");
     /* these two lines make the image being fixed so its not gonna move when i scroll */
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100%;
-}
-.card-post{
-  display: inline-block;
-  margin: 10px 10px;
-  width: 12rem;
-}
-.category-items{
-  display: inline-block;
-  width: 25%;
-  height: 200px;
-  padding: 0;
-  margin: 0;
+    background-size: 100% 100%;
+  }
 
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-.card-text{
-  font-size: 10px;
-  margin: 0 auto;
-  min-width: 20px;
-  min-height: 50px;
+  .card-post {
+    display: inline-block;
+    margin: 10px 10px;
+    width: 12rem;
+  }
 
-}
-.p-items{
-  display: none;
-}
+  .category-items {
+    display: inline-block;
+    width: 25%;
+    height: 200px;
+    padding: 0;
+    margin: 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .card-text {
+    font-size: 10px;
+    margin: 0 auto;
+    min-width: 20px;
+    min-height: 50px;
+  }
+
+  .p-items {
+    display: none;
+  }
+  .categories{
+    display: inline-block;
+    width: 100%;
+  }
+  .category-items {
+    display: inline-block;
+    width: 100%;
+    height: 700px;
+    padding: 0;
+    margin: auto;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
 }

@@ -24,12 +24,6 @@ const postSchema = {
 
 const Post = mongoose.model("Post", postSchema);
 
-const componentsSchema = {
-  introduction: String
-}
-
-const Component = mongoose.model("Component", componentsSchema);
-
 // ===========================================GET requests=========================================================
 
 app.get("/", function(req, res){

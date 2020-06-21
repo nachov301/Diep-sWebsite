@@ -5,7 +5,7 @@
   <!-- ===================================Banner============================================================= -->
 
   <div class="container-fluid banner-container">
-    <img class="banner" src="/files/banner.jpg" alt="">
+    <img class="banner" src="/files/banner.jpeg" alt="">
   </div>
 
   <!-- ====================================Introduction===================================================== -->
@@ -13,7 +13,8 @@
   <div class="container-fluid introduction">
     <h2 class="title">Lời Giới Thiệu</h2>
     <div class="introduction-text">
-      <p>Risus in hendrerit gravida rutrum quisque non tellus orci. Massa vitae tortor condimentum lacinia quis. Sed lectus vestibulum mattis ullamcorper velit. Tempor nec feugiat nisl pretium. Libero justo laoreet sit amet cursus sit amet. Scelerisque varius morbi enim nunc faucibus a pellentesque. Non nisi est sit amet facilisis.</p>
+      <p>Risus in hendrerit gravida rutrum quisque non tellus orci. Massa vitae tortor condimentum lacinia quis. Sed lectus vestibulum mattis ullamcorper velit. Tempor nec feugiat nisl pretium. Libero justo laoreet sit amet cursus sit amet.
+        Scelerisque varius morbi enim nunc faucibus a pellentesque. Non nisi est sit amet facilisis.</p>
     </div>
   </div>
 
@@ -22,50 +23,48 @@
   <div id="categories" class="container-fluid">
     <div class="categories">
 
-      <div class="category-items img1">
-        <div class="text-items">
-          <h3 class="title-items">Timeline</h3>
-          <hr>
-          <p class="p-items">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <form class="" action="/timeline" method="post">
-            <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
-          </form>
-        </div>
-        <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
-      </div>
-      <div class="category-items img2">
-        <div class="text-items">
-          <h3 class="title-items">Hand</h3>
-          <hr>
-          <p class="p-items">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <form class="" action="/hand" method="post">
-            <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
-          </form>
-        </div>
-        <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
-      </div>
-      <div class="category-items img3">
-        <div class="text-items">
-          <h3 class="title-items">Thoughts</h3>
-          <hr>
-          <p class="p-items">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <form class="" action="/thoughts" method="post">
-            <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
-          </form>
-        </div>
-        <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
-      </div>
-      <div class="category-items img4">
-        <div class="text-items">
-          <h3 class="title-items">My journey</h3>
-          <hr>
-          <p class="p-items">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <form class="" action="/journey" method="post">
-            <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
-          </form>
-        </div>
-        <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
-      </div>
+  <div class="category-items img1">
+
+      <div class="text-items">
+        <h3 class="title-items">Timeline</h3>
+        <form class="" action="/timeline" method="post">
+          <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
+        </form>
+
+    </div>
+    <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
+  </div>
+
+  <div class="category-items img2">
+    <div class="text-items">
+      <h3 class="title-items">Hand</h3>
+      <form class="" action="/hand" method="post">
+        <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
+      </form>
+    </div>
+    <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
+  </div>
+
+
+  <div class="category-items img3">
+    <div class="text-items">
+      <h3 class="title-items">Thoughts</h3>
+      <form class="" action="/thoughts" method="post">
+        <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
+      </form>
+    </div>
+    <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
+  </div>
+  <div class="category-items img4">
+    <div class="text-items">
+      <h3 class="title-items">Journey</h3>
+      <form class="" action="/journey" method="post">
+        <button class="btn-primary btn-lg" type="submit" name="button">Go to category</button>
+      </form>
+    </div>
+    <!-- <img class="category-img" src="/files/buda.jpg" alt="buda"> -->
+  </div>
+
     </div>
   </div>
 
@@ -90,9 +89,9 @@
           </div>
           <%console.log(post.url);%>
           <% if(post.url.length < 1){%>
-            <img class="card-img-top zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
+          <img class="card-img-top zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
           <%}else{%>
-            <img class="card-img-top zoom" src=<%=post.url%> alt="Card image cap">
+          <img class="card-img-top zoom" src=<%=post.url%> alt="Card image cap">
           <%}%>
         </div>
         <div class="card-body">
@@ -109,29 +108,29 @@
           <form class="" action="/post" method="post">
             <button class="btn btn-primary btn-lg" type="submit" name="id" value=<%=post._id%>>Check post</button>
           </form>
-    </div>
-  </div>
+        </div>
+      </div>
 
-<%}%>
+      <%}%>
 
           <% }); %>
-        </div>
+    </div>
 
-        <!-- ===========================================Writter======================================================== -->
+    <!-- ===========================================Writter======================================================== -->
 
-        <div id="writter" class="container-fluid">
-          <h2 class="title">Writter</h2>
-          <div class="writter-container container-fluid">
-            <img class="writter-img" src="/files/writter.jpg" alt="">
+    <!-- <div id="writter" class="container-fluid">
+      <h2 class="title">Writter</h2>
+      <div class="writter-container container-fluid">
+        <img class="writter-img" src="/files/writter.jpg" alt="">
 
-          </div>
-          <div class="writter-name-container">
-            <h3>Diep Nguyen Thi Ngoc</h3>
-          </div>
+      </div>
+      <div class="writter-name-container">
+        <h3>Diep Nguyen Thi Ngoc</h3>
+      </div>
 
-        </div>
+    </div>
 
-</body>
+</body> -->
 
 
 <%- include("partials/footer") %>
