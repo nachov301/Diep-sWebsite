@@ -269,6 +269,33 @@ hr {
 }
 
 @media (max-width: 1000px) {
+  footer{
+    text-align: center;
+    font-size: 2rem;
+  }
+  .navbar {
+    /* The ! important property in CSS means that all subsequent rules on an element are to be ignored,
+    and the rule denoted by ! important is to be applied. */
+    background: rgba(238,210,238,0.6) !important;
+    position: fixed;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    height: 150px;
+    z-index: 100;
+  }
+  .navbar-toggler-icon{
+    width: 120px;
+    height: 120px;
+  }
+  .navbar-collapse{
+    background: rgba(238,210,238,0.6) !important;
+    width: 100%;
+  }
+  .nav-item{
+    padding: 0;
+    margin: 0;
+  }
   .intro-p{
     font-size: 4rem;
   }
@@ -362,5 +389,25 @@ hr {
     text-align: center;
     color: #a6b1e1;
     text-decoration: underline;
+  }
+  .date {
+    position: absolute;
+    font-size: 2rem;
+    width: 200px;
+    height: 60px;
+    z-index: 100;
+    background-color: #a6b1e1;
+    /* starts from top-left in a clockwise direction */
+    border-radius: 0 0 15px 0;
+  }
+  .title-items {
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 8.5rem;
+    padding: 20%;
+  }
+  .btn-category{
+    width: 20rem;
+    height: 6rem;
+    font-size: 2rem;
   }
 }
