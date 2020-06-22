@@ -278,6 +278,11 @@ hr {
   height: 200px;
 } */
 @media (max-width: 1000px) {
+  .brand{
+    width: 130px;
+    height: 130px;
+    margin-right: 20px;
+  }
   .footer-2{
     height: 300px;
     width: 100%;
