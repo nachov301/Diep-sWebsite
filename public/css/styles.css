@@ -131,7 +131,9 @@ hr {
   padding: 0;
   margin: 0;
 }
-
+.col-12{
+  text-align: left;
+}
 .footer {
   background-color: #a6b1e1;
   width: 100%;
@@ -269,10 +271,23 @@ hr {
 }
 
 @media (max-width: 1000px) {
-  .footer{
+  .footer-2{
+    height: 300px;
+    width: 100%;
+    background-color: #a6b1e1;
     text-align: center;
     font-size: 2rem;
-    padding: 100px auto;
+    padding: 500px auto;
+    text-align: center;
+  }
+  .footer{
+    padding-top: 10%;
+    text-align: center;
+    font-size: 3rem;
+  }
+  .dropdown-menu{
+    font-size: 3rem;
+    background: rgba(238,210,238,0.6) !important;
   }
   .navbar {
     /* The ! important property in CSS means that all subsequent rules on an element are to be ignored,
@@ -286,13 +301,19 @@ hr {
     z-index: 100;
     font-size: 3rem;
   }
+  .nav-link{
+    margin: 0 0;
+    padding: 10px;
+  }
   .navbar-toggler-icon{
     width: 120px;
     height: 120px;
   }
-  .navbar-collapse{
+  .navbar-nav{
     background: rgba(238,210,238,0.6) !important;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
   .nav-item{
     padding: 0;
@@ -302,7 +323,7 @@ hr {
     font-size: 3rem;
   }
   .intro-p{
-    font-size: 4rem;
+    font-size: 3rem;
   }
   .introduction-text {
     width: 100%;
@@ -380,7 +401,7 @@ hr {
   .category-items {
     display: inline-block;
     width: 100%;
-    height: 700px;
+    height: 900px;
     padding: 0;
     margin: auto;
     background-size: 100% 100%;
@@ -424,5 +445,8 @@ hr {
   }
   .post-title{
     font-size: 6rem;
+  }
+  .new-posts{
+    margin-top: 150px;
   }
 }
