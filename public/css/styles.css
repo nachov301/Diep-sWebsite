@@ -5,6 +5,51 @@ body {
 label {
   display: block;
 }
+.logOut{
+  display: inline-block;
+  position: relative;
+  z-index: 100;
+}
+.home-posts{
+  margin: 50px 50px;
+}
+.img-post{
+  float: right;
+  margin: 0;
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+}
+
+.main-title-home{
+  margin: 100px auto auto auto;
+  text-align: center;
+}
+.underline{
+  text-decoration: underline;
+}
+.img-home{
+  border-radius: 100px;
+  float: right;
+  display: inline-block;
+  overflow: hidden;
+}
+.col4-title{
+  font-size: 1.5rem;
+}
+.col4-img{
+  height:80px;
+  width: 80px;
+}
+.col4-posts{
+  margin: 5px auto;
+  height: 120px;
+}
+/* bootstrap class */
+.sticky-top{
+  top: 70px;
+  z-index: 0;
+}
 
 .footer {
   background-color: #a6b1e1;

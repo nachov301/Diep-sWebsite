@@ -1,0 +1,118 @@
+<%-include("partials/header")%>
+
+<body>
+
+  <h1 class="main-title-home">Home page</h1>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-8">
+
+        <h3 class="main-title-home underline">All posts</h3>
+
+        <%posts.forEach(function(post){%>
+
+        <div class="home-posts">
+
+          <div class="title-home">
+            <div class="img-home">
+              <% if(post.url.length < 1){%>
+              <img class="img-post zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
+              <%}else{%>
+              <img class="img-post zoom" src=<%=post.url%> alt="Card image cap">
+              <%}%>
+            </div>
+
+            <%if(post.title.length > 10){%>
+              <h5 class="card-title"><%=post.title.substring(0, 80) + "...";%></h5>
+              <%}else{%>
+              <h5 class="card-title"><%=post.title%></h5>
+              <%}%>
+
+          </div>
+
+          <div class="post-home">
+            <%if(post.content.length > 100){%>
+              <div class="text-container">
+                <p class="card-text"><%=post.content.substring(0, 500) + "..."%></p>
+              </div>
+              <%}else{%>
+              <div class="text-container">
+                <p class="card-text"><%=post.content%></p>
+              </div>
+              <%}%>
+          </div>
+
+        </div>
+
+        <% }); %>
+
+            </div>
+
+            <div class="col-4">
+              <div class="sticky-top">
+
+
+                <h3 class="main-title-home underline">Top 5 post</h3>
+                <% var cont = posts.length - 5 %>
+                <% var cont2 = 0 %>
+
+                <%posts.forEach(function(post){%>
+                <%cont2++;%>
+                <%if(cont2 > cont){ %>
+
+
+                <div class="home-posts col4-posts">
+
+                  <div class="title-home">
+                    <!-- <div class="img-home col4-img">
+                      <% if(post.url.length < 1){%>
+                      <img class="img-post zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
+                      <%}else{%>
+                      <img class="img-post zoom" src=<%=post.url%> alt="Card image cap">
+                      <%}%>
+                </div> -->
+
+                <%if(post.title.length > 10){%>
+                      <h5 class="card-title col4-title"><%=post.title.substring(0, 80) + "...";%></h5>
+                      <%}else{%>
+                      <h5 class="card-title col4-title"><%=post.title%></h5>
+                      <%}%>
+
+                </div>
+
+                <div class="post-home">
+                <%if(post.content.length > 100){%>
+                      <div class="text-container">
+                        <p class="card-text"><%=post.content.substring(0, 100) + "..."%></p>
+                      </div>
+                      <%}else{%>
+                      <div class="text-container">
+                        <p class="card-text"><%=post.content%></p>
+                      </div>
+                      <%}%>
+                </div>
+
+                </div>
+
+
+                <% } %>
+
+
+
+                      <% }); %>
+
+
+              </div>
+
+
+
+                  </div>
+
+                </div>
+              </div>
+
+
+</body>
+
+<%-include("partials/footer")%>
