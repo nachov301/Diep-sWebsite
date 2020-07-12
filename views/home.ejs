@@ -43,6 +43,15 @@
               <%}%>
           </div>
 
+          <div class="">
+            <form class="" action="/like" method="post">
+              <button class="btn btn-primary" type="submit" name="button">Like</button>
+              <p>likes: <%= post.likes %></p>
+              <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
+              <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+            </form>
+          </div>
+
         </div>
 
         <% }); %>

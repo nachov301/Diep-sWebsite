@@ -5,6 +5,9 @@ body {
 label {
   display: block;
 }
+.hidden{
+  display: none;
+}
 .logOut{
   display: inline-block;
   position: relative;
