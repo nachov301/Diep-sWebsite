@@ -1,7 +1,28 @@
-// $ is short for jQuery
-// for manipulating properties, first write property and second the value you wanna change it to
-// $("h1").css("color","red");
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
+<head>
+  <meta charset="utf-8">
+  <title>Drum Kit</title>
+  <link rel="stylesheet" href="drum.css">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+</head>
+
+<body>
+
+  <h1 id="title">Drum 🥁 Kit</h1>
+  <div class="set">
+    <button class="w drum">w</button>
+    <button class="a drum">a</button>
+    <button class="s drum">s</button>
+    <button class="d drum">d</button>
+    <button class="j drum">j</button>
+    <button class="k drum">k</button>
+    <button class="l drum">l</button>
+  </div>
+
+<!-- ///////////////////////////////////////////////my script////////////////////////////////////////////////////// -->
+<script>
 // with this for i added a listener to all the buttons
 for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click",function(){
@@ -68,3 +89,12 @@ function buttonAnimation(currentKey){
     activeButton.classList.remove("pressed");
   }, 100);
 }
+
+</script>
+
+  <footer>
+    Made with ❤️ for Nachov301 studios.
+  </footer>
+</body>
+
+</html>

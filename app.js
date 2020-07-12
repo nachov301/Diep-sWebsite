@@ -64,7 +64,8 @@ const Post = mongoose.model("Post", postSchema);
 // ===========================================GET requests=========================================================
 
 app.get("/test", function(req, res){
-  res.sendFile(__dirname + "/public/test.html");
+  // res.sendFile(__dirname + "/public/test.html");
+  res.render("test");
 });
 
 app.get("/signUp", function(req, res) {
