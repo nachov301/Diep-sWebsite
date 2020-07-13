@@ -38,7 +38,7 @@ label {
   overflow: hidden;
 }
 .col4-title{
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 .col4-img{
   height:80px;
@@ -46,7 +46,7 @@ label {
 }
 .col4-posts{
   margin: 5px auto;
-  height: 120px;
+  height: 90px;
 }
 /* bootstrap class */
 .sticky-top{

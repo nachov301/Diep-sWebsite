@@ -28,6 +28,8 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click",function(){
 // with this.innerHTML im giving the value of the button which was pressed to the variable buttonPressed
     var buttonPressed = this.innerHTML;
+
+    console.log(buttonPressed);
     // calling the function make sound and passing buttonPressed as a paramether
     makeSound(buttonPressed);
 
