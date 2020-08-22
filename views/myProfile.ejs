@@ -37,6 +37,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="/myProfile">My profile<span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/updateBio">Write bio<span class="sr-only">(current)</span></a>
+
+        <!-- <a class="nav-link" href="/myProfile">Write a bios<span class="sr-only">(current)</span></a> -->
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/write">Write new story<span class="sr-only">(current)</span></a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Categories
@@ -46,26 +54,9 @@
           <a class="dropdown-item" href="/hand">Hand</a>
           <a class="dropdown-item" href="/thoughts">Thoughts</a>
           <a class="dropdown-item" href="/journey">Journey</a>
-          <!-- <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/#writter">Writter</a> -->
         </div>
 
       </li>
-
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/timeline">Timeline</a>
-          <a class="dropdown-item" href="/hand">Hand</a>
-          <a class="dropdown-item" href="/thoughts">Thoughts</a>
-          <a class="dropdown-item" href="/journey">Journey</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/#writter">Writter</a>
-        </div>
-
-      </li> -->
 
     </ul>
   </div>
@@ -80,3 +71,61 @@
 
 
 </div>
+
+<!---------------------------- end of navbar--------------------------- -->
+<div class="container-fluid banner-container">
+  <img class="banner" src="/files/banner.jpeg" alt="">
+</div>
+
+  <div class="container-fluid">
+
+    <%posts.forEach(function(post){%>
+
+    <div class="card card-post">
+      <div class="boundaries">
+        <div class="date">
+          <p class="date-text"><%=post.date%></p>
+        </div>
+        <%console.log(post.url);%>
+        <% if(post.url.length < 1){%>
+          <img class="card-img-top zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
+        <%}else{%>
+          <img class="card-img-top zoom" src=<%=post.url%> alt="Card image cap">
+        <%}%>
+      </div>
+      <div class="card-body centered">
+        <%if(post.title.length > 20){%>
+        <h5 class="card-title"><%=post.title.substring(0, 20) + "...";%></h5>
+        <%}else{%>
+        <h5 class="card-title"><%=post.title%></h5>
+        <%}%>
+    <%if(post.content.length > 100){%>
+        <p class="card-text2"><%=post.content.substring(0, 100) + "..."%></p>
+        <%}else{%>
+        <p class="card-text2"><%=post.content%></p>
+        <%}%>
+        <form class="removeAndUpdate" action="/postToEdit" method="post">
+          <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+          <button class="btn btn-actions" type="submit" name="id" value=<%=post._id%>><i class="fas fa-edit"></i></button>
+        </form>
+        <form class="removeAndUpdate" action="/remove" method="post">
+          <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+          <button class="btn btn-actions" type="submit" name="id" value=<%=post._id%>><i class="fas fa-trash" style="color: red"></i></button>
+        </form>
+
+        <!-- <div class="">
+          <form class="" action="/like" method="post">
+            <button class="btn btn-primary" type="submit" name="button">Like</button>
+            <p>likes: <%= post.likes %></p>
+            <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
+            <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+          </form>
+        </div> -->
+
+  </div>
+</div>
+
+        <% }); %>
+      </div>
+
+<%-include("partials/footer.ejs")-%>

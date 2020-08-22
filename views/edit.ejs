@@ -1,0 +1,40 @@
+<%-include("partials/header.ejs")%>
+
+<body>
+  <div class="container-fluid compose-container">
+    <form class="" action="/update" method="post">
+
+      <!-- <div class="form-group compose-text">
+        <label for="">Enter likes</label>
+        <input type="text" name="likes" value="">
+      </div> -->
+      <div class="form-group compose-text">
+        <label for="">Enter post title</label>
+        <input class="width70 invisibleInputBox" type="text" name="postTitle" value="<%=title%>">
+      </div>
+      <div class="form-group compose-text">
+        <label for="">Enter URL from an image</label>
+        <input class="width70 invisibleInputBox" type="text" name="postURL" value="">
+      </div>
+      <div class="form-group compose-text">
+        <label for="">Enter post text</label>
+        <textarea class="postContent invisibleInputBox" name="postText" rows="8" cols="80"><%=content%></textarea>
+      </div>
+      <div class="container-fluid compose-text">
+        <p>Choose a category:</p>
+      <span>timeline</span>
+      <input type="checkbox" name="timeline" value="checked">
+      <span>hand</span>
+      <input type="checkbox" name="hand" value="checked">
+      <span>thoughts</span>
+      <input type="checkbox" name="thoughts" value="checked">
+      <span>journey</span>
+      <input type="checkbox" name="journey" value="checked">
+      </div>
+      <button class="btn-primary btn-lg btn-submit" type="submit" name="button">Submit</button>
+      <input class="hidden" type="text" name="postID" value="<%= id %>">
+    </form>
+  </div>
+</body>
+
+<%-include("partials/footer")%>

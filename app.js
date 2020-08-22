@@ -33,7 +33,8 @@ app.use(passport.session());
 const userSchema = new mongoose.Schema({
   user: String,
   password: String,
-  postIDs: []
+  postIDs: [],
+  about: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -56,16 +57,44 @@ const postSchema = {
   thoughts: String,
   journey: String,
   url: String,
-  likes: Number
+  likes: Number,
+  readingTime: Number,
+  userName: String
 }
 
 const Post = mongoose.model("Post", postSchema);
 
 // ===========================================GET requests=========================================================
 
+app.get("/updateBio", function(req, res){
+  res.render("updateBio");
+});
+
 app.get("/test", function(req, res){
   // res.sendFile(__dirname + "/public/test.html");
   res.render("test");
+});
+
+app.get("/myProfile", function(req, res) {
+
+  const user = req.user.username;
+  console.log(user);
+  if(req.isAuthenticated){
+
+    Post.find({userName: user},function (err, foundPost){
+      if(err){
+        console.log(err);
+      }else{
+        res.render("myProfile",{
+          posts: foundPost
+        });
+      }
+    });
+
+  }else{
+    res.redirect("/");
+  }
+
 });
 
 app.get("/signUp", function(req, res) {
@@ -88,11 +117,14 @@ app.get("/home", function(req, res) {
 
   if (req.isAuthenticated()) {
     Post.find({}, function(err, foundPost) {
+      console.log(foundPost);
       if (err) {
         console.log(err);
       } else {
         res.render("home", {
           posts: foundPost
+          // to sort the post by a key value
+          // orderedPost: foundPost.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
         });
       }
     });
@@ -122,7 +154,7 @@ app.get("/diep", function(req, res) {
 
 });
 
-app.get("/37826537", function(req, res) {
+app.get("/write", function(req, res) {
 
   if (req.isAuthenticated) {
     res.render("compose");
@@ -223,46 +255,160 @@ app.get("/journey", function(req, res) {
 
 //=============================================POST request========================================================
 
-app.post("/like", function(req, res) {
-  // we use number to convert it into a number and be able to use different math operations :)
-  var likes = Number(req.body.likes);
-  const postID = req.body.postID;
-  var flag = true;
+app.post("/timeline", function(req, res){
+  res.redirect("/timeline");
+});
 
-  User.findById(req.user.id, function(err, foundUser){
+app.post("/journey", function(req, res){
+  res.redirect("/journey");
+});
+
+app.post("/thoughts", function(req, res){
+  res.redirect("/thoughts");
+});
+
+app.post("/hand", function(req, res){
+  res.redirect("/hand");
+});
+
+app.post("/user", function(req, res){
+  const user = req.body.userID;
+  console.log(user);
+  if(req.isAuthenticated){
+// findOne returns a object and find returns an array
+    User.findOne({username: user}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }else{
+
+        if(foundUser){
+
+          // findOne returns a object and find returns an array
+              Post.find({userName: user},function (err, foundPost){
+                if(err){
+                  console.log(err);
+                }else{
+                      console.log("user found: " + user);
+                      res.render("categories2",{
+                            about: foundUser.about,
+                            title: user,
+                            posts: foundPost
+                          });
+                      }
+                });
+
+        }
+      }
+    });
+
+
+  }else{
+    res.redirect("/");
+  }
+
+});
+
+app.post("/remove", function(req, res){
+  const postID = req.body.postID;
+  console.log(postID);
+
+  Post.findByIdAndRemove(postID, function(err){
     if(err){
       console.log(err);
     }else{
-      if(foundUser){
+      console.log("Successfully removed");
+    }
+  });
+  res.redirect("myProfile");
 
-        for(var i = 0; i < foundUser.postIDs.length; i++) {
+});
+//----------------------------------------- update ----------------------------------------
+app.post("/update", function(req, res){
+  console.log(req.body.postID);
+  const id = req.body.postID;
 
-          if(foundUser.postIDs[i] === postID){
-            flag = false;
-          }
-
-        }
-        if(flag === true){
-          foundUser.postIDs.push(postID);
-          foundUser.save();
-
-          console.log("likes: " + likes + " postID: " + postID);
-
-          Post.findOne({_id: postID}, function(err, foundPost){
-            if(err){
-              console.log(err);
-            }else{
-              likes = likes + 1;
-              foundPost.likes = likes;
-              foundPost.save();
-            }
-          });
+  Post.findOne({_id: id}, function(err, foundItem){
+    if(err){
+      console.log(err);
+    }else{
+      if(!foundItem){
+        console.log("wasnt found");
+      }else{
+        if(req.body.postTitle){
+          foundItem.title = req.body.postTitle;
 
         }
+        if(req.body.postText){
+          foundItem.content = req.body.postText;
 
+        }
+        foundItem.save();
       }
     }
   });
+
+res.redirect("/myProfile");
+
+});
+//----------------------------------------- update ----------------------------------------
+
+app.post("/updateBio", function(req, res){
+  const userID = req.user._id;
+  console.log("user id is: " + userID);
+  const bio = req.body.bio;
+  console.log("req.body.bio is" + bio);
+
+  User.findOne({_id: userID}, function(err, foundUser){
+    if(err){
+      console.log(err);
+    }else{
+      if(!foundUser){
+        console.log("user wasnt found");
+      }else{
+        if(req.body.bio){
+          console.log(req.body.bio);
+          console.log("bio updated");
+          foundUser.about = bio;
+        }
+
+        foundUser.save();
+      }
+    }
+  });
+
+  res.redirect("/myProfile");
+
+});
+
+app.post("aboutMe", function(req, res){
+  const userID = req.user.username;
+
+
+});
+
+app.post("/postToEdit", function(req, res){
+
+  // const user = req.user.username;
+  // console.log(user);
+
+  const post_id = req.body.postID;
+  console.log(post_id);
+
+  Post.findById(post_id, function(err, foundPost) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("edit", {
+        title: foundPost.title,
+        content: foundPost.content,
+        id: post_id
+      });
+    }
+  })
+
+});
+
+app.post("/like", function(req, res) {
 
   res.redirect("/home");
 
@@ -291,9 +437,10 @@ app.post("/register", function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
+  // console.log(password);
+  // console.log(confirmPassword);
 
-  console.log(password);
-  console.log(confirmPassword);
+
 
   if (password === confirmPassword) {
     User.register({
@@ -339,8 +486,26 @@ app.post("/journey", function(req, res) {
 });
 
 app.post("/post", function(req, res) {
+
+  // we use number to convert it into a number and be able to use different math operations :)
+  var likes = Number(req.body.likes);
+  const postID = req.body.postID;
+
+    // console.log("views: " + likes + " postID: " + postID);
+
+    Post.findOne({_id: postID}, function(err, foundPost){
+      if(err){
+        console.log(err);
+      }else{
+        likes = likes + 1;
+        foundPost.likes = likes;
+        foundPost.save();
+      }
+    });
+
+
   const post_id = req.body.id;
-  console.log(post_id);
+  // console.log(post_id);
 
   Post.findById(post_id, function(err, foundPost) {
     if (err) {
@@ -356,7 +521,7 @@ app.post("/post", function(req, res) {
 
 app.post("/compose", function(req, res) {
 
-  console.log(req.body);
+  // console.log("username is: " + req.user.username);
 
   const postTitle = req.body.postTitle;
   const postText = req.body.postText;
@@ -365,8 +530,19 @@ app.post("/compose", function(req, res) {
   const thoughts = req.body.thoughts;
   const journey = req.body.journey;
   const url = req.body.postURL;
+  // to get my username
+  const userName = req.user.username;
+// to calculate the reading time---------------------
 
-  const likes = req.body.likes;
+    const wordsPerMinute = 200;
+    const noOfWords = postText.split(/\s/g).length;
+    const minutes = noOfWords / wordsPerMinute;
+    // to round up, if we wanted to round down we'd use floor instead
+    const readTime = Math.ceil(minutes);
+
+// ---------------------------------------------------
+
+  // const likes = req.body.likes;
 
   var dateTime = new Date();
   const day = dateTime.getDate();
@@ -383,14 +559,17 @@ app.post("/compose", function(req, res) {
     thoughts: thoughts,
     journey: journey,
     url: url,
-    likes: likes
+    likes: 1,
+    readingTime: readTime,
+    userName: userName
   });
 
   newPost.save();
 
-  res.redirect("/diep");
+  res.redirect("/home");
 
 });
+
 
 
 let port = process.env.PORT;
