@@ -54,6 +54,25 @@ label {
     border: none;
     cursor: pointer;
 }
+.btnTitle{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: black;
+  /* text-decoration: underline; */
+  cursor: pointer;
+  outline: none;
+}
+.btnTitle:focus {
+    outline: 0 !important;
+}
+
+.btnTitle:hover{
+  color: #069;
+}
 /* to make a button look like a link */
 .btnLink{
   background: none!important;
@@ -62,12 +81,15 @@ label {
   /*optional*/
   font-family: arial, sans-serif;
   /*input has OS specific font-family*/
-  color: #069;
+  color: black;
   /* text-decoration: underline; */
   cursor: pointer;
 }
 .btnLink:hover{
   text-decoration: underline;
+}
+.btnLink:focus{
+  outline: 0 !important;
 }
 .invisibleInputBox {
   background-color: transparent;
@@ -129,7 +151,7 @@ label {
   font-family: font-family: 'Roboto Mono', monospace;
   font-weight: 300;
   font-size: 0.8rem;
-  color: gray;
+  color: black;
   display: inline;
   margin: auto 0 auto 0;
 }
@@ -200,10 +222,10 @@ label {
 }
 
 hr {
-  border: none;
-  border-top: 5px dotted #f4eeff;
-  width: 100px;
-  margin: 10px auto;
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, gray, #ccc);
 }
 
 .card-text {

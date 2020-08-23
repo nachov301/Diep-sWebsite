@@ -2,8 +2,6 @@
 
 <body>
 
-  <!-- <h1 class="main-title-home">Home page</h1> -->
-
   <div class="container-fluid">
     <div class="row">
       <div class="col-7">
@@ -15,6 +13,7 @@
         <div class="home-posts">
 
           <div class="title-home">
+
             <div class="img-home">
               <% if(post.url.length < 1){%>
               <img class="img-post zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
@@ -23,16 +22,29 @@
               <%}%>
             </div>
 
+          </div>
 
               <%if(post.title.length > 100){%>
-              <h5 class="card-title"><%=post.title.substring(0, 100) + "...";%></h5>
+
+              <form class="mv" action="/post" method="post">
+                <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
+                <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+                <button class="btnTitle" type="submit" name="id" value="<%= post._id %>">
+                  <h5 class="card-title"><%=post.title.substring(0, 100) + "...";%></h5>
+                </button>
+              </form>
+
               <%}else{%>
-              <h5 class="card-title"><%=post.title%></h5>
+
+              <form class="mv" action="/post" method="post">
+                <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
+                <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+                <button class="btnTitle" type="submit" name="id" value="<%= post._id %>">
+                  <h5 class="card-title"><%=post.title%></h5>
+                </button>
+              </form>
+
               <%}%>
-
-
-
-          </div>
 
           <div class="post-home">
             <%if(post.content.length > 100){%>
@@ -46,117 +58,115 @@
               <%}%>
           </div>
 
-          <!-- <div class="">
-            <!-- <form class="" action="/like" method="post"> -->
-              <!-- <button class="btn btn-primary like" type="submit" name="button">Like</button>
-              <p>likes: <%= post.likes %></p>
-              <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
-              <input class="hidden" type="text" name="postID" value="<%= post._id %>"> -->
-              <!-- </form> -->
-              <!-- </div> -->
+               <div class="margin-top">
 
 
-              <div class="margin-top">
-                <form class="mv" action="/post" method="post">
-                  <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
-                  <input class="hidden" type="text" name="postID" value="<%= post._id %>">
-                  <button class="btn btn-primary" type="submit" name="id" value="<%= post._id %>">đọc thêm</button>
-                </form>
-                <!-- <p class="mv">Views: <%= post.likes %></p> -->
-                <p class="mv"><%= post.readingTime %> minutes read </p>
                 <% if(post.timeline === "checked"){%>
 
-                  <div class="mv">
-                    <form class="mv2" action="/user" method="post">
-                      <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
-                    </form>
-                      <p class="mv2"> in </p>
-                    <form class="mv2" action="/timeline" method="post">
-                      <button class="btnLink" type="submit">Timeline</button>
-                    </form>
-                    <!-- <p class="mv"> in <a href="/timeline">timeline</a></p> -->
-                  </div>
+              <div class="mv">
 
-                <%} %>
-                <% if(post.hand === "checked"){%>
-
-                  <div class="mv">
-                    <form class="mv2" action="/user" method="post">
-                      <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
-                    </form>
-                    <p class="mv2"> in </p>
-                    <form class="mv2" action="/hand" method="post">
-                      <button class="btnLink" type="submit">Hand</button>
-                    </form>
-                  </div>
-
-                <%} %>
-                <% if(post.thoughts === "checked"){%>
-
-                  <div class="mv">
-                    <form class="mv2" action="/user" method="post">
-                      <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
-                    </form>
-                    <p class="mv2"> in </p>
-                    <form class="mv2" action="/thoughts" method="post">
-                      <button class="btnLink" type="submit">Thoughts</button>
-                    </form>
-                  </div>
-
-                <%} %>
-                <% if(post.journey === "checked"){%>
-
-                <div class="mv">
-                  <!-- <a class="anchor" href="/user"><%= post.userName %></a> -->
-                  <form class="mv2" action="/user" method="post">
-                    <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
-                  </form>
-                    <p class="mv2"> in </p>
-                  <form class="mv2" action="/journey" method="post">
-                    <button class="btnLink" type="submit">Journey</button>
-                  </form>
-
-                </div>
-
-                <%} %>
-
-
-                <p class="mv"><%=post.date%></p>
+                <form class="mv2" action="/user" method="post">
+                  <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+                </form>
+                <p class="mv2"> in </p>
+                <form class="mv2" action="/timeline" method="post">
+                  <button class="btnLink" type="submit">Timeline</button>
+                </form>
 
               </div>
 
+              <%} %>
+              <% if(post.hand === "checked"){%>
+
+              <div class="mv">
+
+                <form class="mv2" action="/user" method="post">
+                  <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+                </form>
+                <p class="mv2"> in </p>
+                <form class="mv2" action="/hand" method="post">
+                  <button class="btnLink" type="submit">Hand</button>
+                </form>
+
+              </div>
+
+              <%} %>
+              <% if(post.thoughts === "checked"){%>
+
+              <div class="mv">
+
+                <form class="mv2" action="/user" method="post">
+                  <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+                </form>
+                <p class="mv2"> in </p>
+                <form class="mv2" action="/thoughts" method="post">
+                  <button class="btnLink" type="submit">Thoughts</button>
+                </form>
+
+              </div>
+
+              <%} %>
+              <% if(post.journey === "checked"){%>
+
+              <div class="mv">
+
+                <form class="mv2" action="/user" method="post">
+                  <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+                </form>
+                <p class="mv2"> in </p>
+                <form class="mv2" action="/journey" method="post">
+                  <button class="btnLink" type="submit">Journey</button>
+                </form>
+
+              </div>
+
+
+              <%} %>
+              <div class="">
+
+                <p class="mv"><%=post.date%></p>
+                <p class="mv"><%= post.readingTime %> min read </p>
+
+              </div>
+
+
+              <hr style="margin-top: 70px">
             </div>
 
-            <hr>
-
-            <% }); %>
 
           </div>
-          <!------------------------------------------------ right col --------------------------------------------------------->
-
-          <!---------------------------------- col 4  -------------------------------------------->
 
 
 
-          <div class="col-3">
-            <div class="sticky-top">
+
+          <% }); %>
+
+        </div>
+        <!------------------------------------------------ right col --------------------------------------------------------->
+
+        <!---------------------------------- col 4  -------------------------------------------->
 
 
-              <h3 class="main-title-home underline">Top most visited posts</h3>
-              <!-- for sorting the array of objects according to a key -->
-              <% posts.sort((a, b) => (a.likes < b.likes) ? 1 : -1); %>
-              <% var cont = 4 %>
-              <% var cont2 = 0 %>
 
-              <%posts.forEach(function(post){%>
-              <%cont2++;%>
-              <%if(cont2 <= cont){ %>
+        <div class="col-3">
+          <div class="sticky-top">
 
 
-              <div class="col4-posts">
-                <div class="title-home">
+            <h3 class="main-title-home underline">Top most visited posts</h3>
+            <!-- for sorting the array of objects according to a key -->
+            <% posts.sort((a, b) => (a.likes < b.likes) ? 1 : -1); %>
+            <% var cont = 4 %>
+            <% var cont2 = 0 %>
 
-                  <!-- <div class="img-home col4-img">
+            <%posts.forEach(function(post){%>
+            <%cont2++;%>
+            <%if(cont2 <= cont){ %>
+
+
+            <div class="col4-posts">
+              <div class="title-home">
+
+                <!-- <div class="img-home col4-img">
                             <% if(post.url.length < 1){%>
                             <img class="img-post zoom" src="/files/default-img.jpg" alt="Doesnt load :_(">
                             <%}else{%>
@@ -164,25 +174,39 @@
                             <%}%>
                       </div> -->
 
-                  <%if(post.title.length > 60){%>
-                  <h5 class="card-title col4-title"><%=post.title.substring(0, 60) + "...";%></h5>
-                  <%}else{%>
-                  <h5 class="card-title col4-title"><%=post.title%></h5>
-                  <%}%>
+                <%if(post.title.length > 60){%>
+                <form class="mv" action="/post" method="post">
+                  <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
+                  <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+                  <button class="btnTitle" type="submit" name="id" value="<%= post._id %>">
+                    <h5 class="card-title col4-title"><%=post.title.substring(0, 60) + "...";%></h5>
+                  </button>
+                </form>
+
+                <%}else{%>
+                <form class="mv" action="/post" method="post">
+                  <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
+                  <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+                  <button class="btnTitle" type="submit" name="id" value="<%= post._id %>">
+                    <h5 class="card-title col4-title"><%=post.title%></h5>
+                  </button>
+                </form>
+
+                <%}%>
 
                       </div>
 
                       <!-- <div class="post-home">
                       <%if(post.content.length > 100){%>
-                  <div class="text-container">
-                    <p class="card-text"><%=post.content.substring(0, 100) + "..."%></p>
+                <div class="text-container">
+                  <p class="card-text"><%=post.content.substring(0, 100) + "..."%></p>
 
-                  </div>
-                  <%}else{%>
-                  <div class="text-container">
-                    <p class="card-text"><%=post.content%></p>
-                  </div>
-                  <%}%>
+                </div>
+                <%}else{%>
+                <div class="text-container">
+                  <p class="card-text"><%=post.content%></p>
+                </div>
+                <%}%>
 
 
 
@@ -191,42 +215,42 @@
 
                       </div>
 
-                      <form class="mv" action="/post" method="post">
+                      <!-- <form class="mv" action="/post" method="post">
                         <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
-                  <input class="hidden" type="text" name="postID" value="<%= post._id %>">
-                  <button class="btn btn-primary mv" type="submit" name="id" value="<%= post._id %>">đọc thêm</button>
-                  </form>
+                <input class="hidden" type="text" name="postID" value="<%= post._id %>">
+                <button class="btn btn-primary mv" type="submit" name="id" value="<%= post._id %>">đọc thêm</button>
+                </form> -->
 
-                  <!-- <p class="mv">Views: <%= post.likes %></p> -->
-                  <p class="mvCol-4"><%= post.readingTime %> minutes read </p>
-                  <p class="mvCol-4"><%= post.date %></p>
-                  <hr>
-                  <% } %>
-
-
-
-                  <% }); %>
+                <!-- <p class="mv">Views: <%= post.likes %></p> -->
+                <p class="mvCol-4"><%= post.readingTime %> minutes read </p>
+                <p class="mvCol-4"><%= post.date %></p>
+                <hr>
+                <% } %>
 
 
-                </div>
+
+                <% }); %>
+
 
               </div>
-              <!---------------------------------- col 4  -------------------------------------------->
+
             </div>
+            <!---------------------------------- col 4  -------------------------------------------->
           </div>
+        </div>
 
-          <!-- <h1>Hello</h1> -->
+        <!-- <h1>Hello</h1> -->
 
-          <!-- for using jQuery -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- for using jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-          <script>
-
-
-
+        <script>
 
 
-          </script>
+
+
+
+        </script>
 
 </body>
 
