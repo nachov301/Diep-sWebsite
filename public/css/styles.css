@@ -531,6 +531,12 @@ hr {
     margin-top: 0;
     margin-bottom: 0;
 }
+.card-title-home {
+  font-family: font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  text-align: left;
+  font-size: 6rem;
+}
 .btn-actions {
     width: 80px;
     height: 80px;
