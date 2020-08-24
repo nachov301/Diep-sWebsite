@@ -161,7 +161,7 @@ label {
   color: gray;
 }
 .margin-top{
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .hidden{
   display: none;
@@ -172,7 +172,7 @@ label {
   z-index: 100;
 }
 .home-posts{
-  padding: 30px 50px 30px 150px;
+  padding: 0px 50px 0px 150px;
 }
 .img-post{
   float: right;
@@ -224,6 +224,7 @@ label {
 hr {
     border: 0;
     height: 1px;
+    width: 70%;
     background: #333;
     background-image: linear-gradient(to right, #ccc, gray, #ccc);
 }
@@ -490,10 +491,91 @@ hr {
   height: 50px;
   margin-right: 20px;
 }
+.logOutPhone {
+    display: none;
+    z-index: 100;
+}
 /* .text-comtainer{
   height: 200px;
 } */
+
+@media (max-width: 1228px){
+  .card-title {
+    font-size: 1rem;
+    font-family: font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    text-align: left;
+}
+}
+
+@media (max-width: 1085px){
+  .card-title {
+    font-size: 0.7rem;
+    font-family: font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    text-align: left;
+}
+
+}
+
+
+/* ---------------------------------phone size-------------------------- */
 @media (max-width: 1000px) {
+  .home-posts {
+    padding: 0px 10px 0px 10px;
+}
+  .mv {
+    font-family: font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: gray;
+    display: inline;
+    margin: auto 15px auto 0;
+}
+.mv2 {
+    font-family: font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: black;
+    display: inline;
+    margin: auto 0 auto 0;
+}
+.card-text {
+  font-family: font-family: 'Roboto Mono', monospace;
+  font-weight: 300;
+  font-size: 35px;
+  color: gray;
+  margin: 0 auto;
+  min-width: 20px;
+  min-height: 110px;
+  padding-right: 0;
+}
+  .logOutPhone {
+    display: inline-block;
+    z-index: 100;
+}
+.logOut{
+  display: none;
+}
+.btn-logOutPhone{
+  font-size: 3rem;
+  padding-left: 0;
+}
+  .phoneSize{
+    display: none;
+  }
+  .col-7{
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .img-post {
+    float: right;
+    margin: 0;
+    width: 100px;
+    height: 100px;
+    display: none;
+}
   .brand{
     width: 130px;
     height: 130px;
@@ -607,12 +689,7 @@ hr {
   .card-title{
     font-size: 4rem;
   }
-  .card-text {
-    font-size: 25px;
-    margin: 0 auto;
-    min-width: 20px;
-    min-height: 150px;
-  }
+
   .card-img-top {
     min-height: 413px;
     min-width: 486px;

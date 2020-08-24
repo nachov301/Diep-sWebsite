@@ -130,7 +130,7 @@
               </div>
 
 
-              <hr style="margin-top: 70px">
+              <hr>
             </div>
 
 
@@ -148,11 +148,11 @@
 
 
 
-        <div class="col-3">
-          <div class="sticky-top">
+        <div class="col-3 phoneSize">
+          <div class="sticky-top phoneSize">
 
 
-            <h3 class="main-title-home underline">Top most visited posts</h3>
+            <h3 class="main-title-home underline phoneSize">Top most visited posts</h3>
             <!-- for sorting the array of objects according to a key -->
             <% posts.sort((a, b) => (a.likes < b.likes) ? 1 : -1); %>
             <% var cont = 4 %>
@@ -163,8 +163,8 @@
             <%if(cont2 <= cont){ %>
 
 
-            <div class="col4-posts">
-              <div class="title-home">
+            <div class="col4-posts phoneSize">
+              <div class="title-home phoneSize">
 
                 <!-- <div class="img-home col4-img">
                             <% if(post.url.length < 1){%>
@@ -175,20 +175,20 @@
                       </div> -->
 
                 <%if(post.title.length > 60){%>
-                <form class="mv" action="/post" method="post">
+                <form class="mv phoneSize" action="/post" method="post">
                   <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
                   <input class="hidden" type="text" name="postID" value="<%= post._id %>">
-                  <button class="btnTitle" type="submit" name="id" value="<%= post._id %>">
+                  <button class="btnTitle phoneSize" type="submit" name="id" value="<%= post._id %>">
                     <h5 class="card-title col4-title"><%=post.title.substring(0, 60) + "...";%></h5>
                   </button>
                 </form>
 
                 <%}else{%>
-                <form class="mv" action="/post" method="post">
+                <form class="mv phoneSize" action="/post" method="post">
                   <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
                   <input class="hidden" type="text" name="postID" value="<%= post._id %>">
-                  <button class="btnTitle" type="submit" name="id" value="<%= post._id %>">
-                    <h5 class="card-title col4-title"><%=post.title%></h5>
+                  <button class="btnTitle phoneSize" type="submit" name="id" value="<%= post._id %>">
+                    <h5 class="card-title col4-title phoneSize"><%=post.title%></h5>
                   </button>
                 </form>
 
@@ -222,9 +222,9 @@
                 </form> -->
 
                 <!-- <p class="mv">Views: <%= post.likes %></p> -->
-                <p class="mvCol-4"><%= post.readingTime %> minutes read </p>
-                <p class="mvCol-4"><%= post.date %></p>
-                <hr>
+                <p class="mvCol-4 phoneSize"><%= post.readingTime %> minutes read </p>
+                <p class="mvCol-4 phoneSize"><%= post.date %></p>
+                <hr class="phoneSize">
                 <% } %>
 
 
