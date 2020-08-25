@@ -544,7 +544,13 @@ hr {
     margin-bottom: 0;
 }
 
-
+.container, .container-md, .container-sm {
+    max-width: 100%;
+    margin: auto 50px;
+    text-align: justify;
+    padding-left: 50px;
+    padding-right: 50px;
+}
 .card-title-home {
   font-family: font-family: 'Playfair Display', serif;
   font-weight: 600;
