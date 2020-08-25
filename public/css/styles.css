@@ -738,7 +738,7 @@ hr {
     display: inline-block;
     margin: 20px 10px;
     width: 26rem;
-    height: 57rem;
+    height: 48rem;
   }
   .btn-card{
     font-size: 2rem;
@@ -758,7 +758,7 @@ hr {
   }
   .card-title{
     font-size: 3rem;
-    height: 170px;
+    height: 90px;
   }
   .card-img-top {
     min-height: 413px;
