@@ -43,8 +43,9 @@
           </form>
         <!-- <h5 class="card-title"><%=post.title%></h5> -->
         <%}%>
-    <%if(post.content.length > 60){%>
-        <p class="card-text2"><%=post.content.substring(0, 60) + "..."%></p>
+    <%if(post.content.length > 100){%>
+        <p class="card-text2"><%=post.content.substring(0, 100) + "..."%></p>
+        <p class="card-text2MobileVersion"><%=post.content.substring(0, 350) + "..."%></p>
         <%}else{%>
         <p class="card-text2"><%=post.content%></p>
         <%}%>
