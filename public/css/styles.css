@@ -610,7 +610,7 @@ hr {
   }
   .card-text2MobileVersion {
       display: block;
-      font-family: 'Roboto Mono', monospace;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
       font-weight: 300;
       color: gray;
       min-height: 120px;
@@ -743,7 +743,7 @@ hr {
     height: 120px;
   }
   .navbar-nav{
-    background: rgba(238,210,238,0.6) !important;
+    background: rgba(238,210,238,0.6) !important; 
     width: 100%;
     margin: 0;
     padding: 0;
@@ -874,7 +874,7 @@ hr {
     text-align: center;
   }
   .post-title{
-    font-size: 6rem;
+    font-size: 4rem;
     margin-bottom: 100px;
   }
   .new-posts{
