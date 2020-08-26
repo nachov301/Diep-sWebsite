@@ -543,6 +543,13 @@ hr {
     margin-top: 0;
     margin-bottom: 0;
 }
+.card-body{
+  text-align: left;
+}
+.boundaries {
+    overflow: hidden;
+    height: 800px;
+}
 .width70 {
     width: 90%;
     height: 150px;
@@ -556,7 +563,7 @@ hr {
 .compose-text {
     display: block;
     text-align: left;
-    margin-left: 50px;
+    padding-left: 50px;
     font-size: 3rem;
 }
 .check{
@@ -765,8 +772,8 @@ hr {
   .card-post {
     display: inline-block;
     margin: 20px 10px;
-    width: 26rem;
-    height: 50rem;
+    width: 90%;
+    height: 70rem;
   }
   .btn-card{
     font-size: 2rem;
@@ -785,12 +792,12 @@ hr {
     background-repeat: no-repeat;
   }
   .card-title{
-    font-size: 3rem;
-    height: 90px;
+    font-size: 2.7rem;
+    height: 100px;
   }
   .card-img-top {
-    min-height: 413px;
-    min-width: 486px;
+    min-height: 800px;
+    min-width: 877px;
   }
 
   .p-items {
