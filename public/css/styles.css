@@ -543,6 +543,35 @@ hr {
     margin-top: 0;
     margin-bottom: 0;
 }
+.width70 {
+    width: 90%;
+    height: 150px;
+    font-size: 3rem;
+}
+.postContent {
+    width: 90%;
+    height: 600px;
+    font-size: 3rem;
+}
+.compose-text {
+    display: block;
+    text-align: left;
+    margin-left: 50px;
+    font-size: 3rem;
+}
+.check{
+  width: 80px;
+  height: 80px;
+}
+.checkboxCategories{
+  margin: 50px auto;
+}
+.btn-submit{
+  width: 70%;
+  height: 150px;
+  font-size: 3rem;
+  margin-top: 100px;
+}
 .container, .container-md, .container-sm {
     max-width: 100%;
     margin: auto 50px;
