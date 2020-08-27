@@ -440,27 +440,37 @@ app.post("/register", function(req, res) {
   // console.log(password);
   // console.log(confirmPassword);
 
+ User.findOne({user: username}, function(err, foundUser){
+   if(err){
+     console.log(err);
+   }else{
+     if(!foundUser){
+       if (password === confirmPassword) {
+         User.register({
+           username: req.body.username
+         }, req.body.password, function(err, user) {
+           console.log(req.body.username);
+           if (err) {
+             console.log(err);
+             console.log("error");
+             res.redirect("/");
+           } else {
+             passport.authenticate("local")(req, res, function() {
+               res.redirect("/home");
+             });
+           }
+
+         });
+       } else {
+         res.redirect("signUp");
+       }
+     }else{
+       res.redirect("signUp");
+     }
+   }
+ });
 
 
-  if (password === confirmPassword) {
-    User.register({
-      username: req.body.username
-    }, req.body.password, function(err, user) {
-      console.log(req.body.username);
-      if (err) {
-        console.log(err);
-        console.log("error");
-        res.redirect("/");
-      } else {
-        passport.authenticate("local")(req, res, function() {
-          res.redirect("/home");
-        });
-      }
-
-    });
-  } else {
-    res.redirect("signUp");
-  }
 
 
 });
