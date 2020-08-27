@@ -5,6 +5,23 @@ body {
 label {
   display: block;
 }
+.post-title{
+  margin: 1rem auto 1.5rem auto;
+}
+.col-7 {
+    -ms-flex: 0 0 58.333333%;
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+    padding: 0px 50px 0px 150px;
+}
+.separator{
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: gray;
+  margin-bottom: 30px
+  /* background-image: linear-gradient(to right, #ccc, black, #ccc); */
+}
 .post-p{
   color: gray;
 }
@@ -124,9 +141,6 @@ label {
   display: inline-block;
 
 }
-.anchor{
-
-}
 .card-text2{
   font-family: 'Roboto Mono', monospace;
   font-weight: 300;
@@ -175,9 +189,9 @@ label {
   position: relative;
   z-index: 100;
 }
-.home-posts{
+/* .home-posts{
   padding: 0px 50px 0px 150px;
-}
+} */
 .img-post{
   float: right;
   margin: 0;
@@ -616,7 +630,7 @@ hr {
       min-height: 120px;
       min-width: 246px;
       text-align: justify;
-      font-size: 2rem;
+      font-size: 2.7rem;
   }
 
   .userContainer{
@@ -624,10 +638,11 @@ hr {
     padding-right: 0;
   }
   .aboutMe {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 85px;
-    margin-bottom: 50px;
+    width: 90%;
+    margin: auto auto 80px auto;
 }
 .aboutMeTitle {
     font-family: font-family: 'Playfair Display', serif;
@@ -743,7 +758,7 @@ hr {
     height: 120px;
   }
   .navbar-nav{
-    background: rgba(238,210,238,0.6) !important; 
+    background: rgba(238,210,238,0.6) !important;
     width: 100%;
     margin: 0;
     padding: 0;

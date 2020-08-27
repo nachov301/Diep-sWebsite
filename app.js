@@ -541,14 +541,31 @@ app.post("/compose", function(req, res) {
     const readTime = Math.ceil(minutes);
 
 // ---------------------------------------------------
+// we create an array which holds the name of the months so according to the number that we get from getMonth method some of
+// them is gonna be picked so we can show words instead of the number of the month
+    var month = new Array();
+    month[0] = "Jan";
+    month[1] = "Feb";
+    month[2] = "Mar";
+    month[3] = "Apr";
+    month[4] = "May";
+    month[5] = "Jun";
+    month[6] = "Jul";
+    month[7] = "Aug";
+    month[8] = "Sep";
+    month[9] = "Oct";
+    month[10] = "Nov";
+    month[11] = "Dec";
 
-  // const likes = req.body.likes;
+    var d = new Date();
+    var n = month[d.getMonth()];
+
 
   var dateTime = new Date();
   const day = dateTime.getDate();
-  let month = ("0" + (dateTime.getMonth() + 1)).slice(-2);
+  // let month = ("0" + (dateTime.getMonth() + 1)).slice(-2);
   const year = dateTime.getFullYear();
-  const time = day + "/" + month + "/" + year;
+  const time = n + " " + day + ", " + year;
 
   const newPost = new Post({
     title: postTitle,

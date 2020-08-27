@@ -14,7 +14,7 @@
 
 
   <div class="container-fluid">
-
+    <% posts.sort((a, b) => (a < b) ? 1 : -1); %>
     <%posts.forEach(function(post){%>
 
     <div class="card card-post">
@@ -33,19 +33,19 @@
         <%if(post.title.length > 35){%>
           <form class="" action="/post" method="post">
             <input class="hidden" type="text" name="postID" value="<%= post._id %>">
-            <button class="btn btnTitle" type="submit" name="id" value=<%=post._id%>><h5 class="card-title"><%=post.title.substring(0, 35) + "...";%></h5></button>
+            <button class="btnTitle" type="submit" name="id" value=<%=post._id%>><h5 class="card-title"><%=post.title.substring(0, 35) + "...";%></h5></button>
           </form>
        <!-- <h5 class="card-title"><%=post.title.substring(0, 20) + "...";%></h5> -->
         <%}else{%>
           <form class="" action="/post" method="post">
             <input class="hidden" type="text" name="postID" value="<%= post._id %>">
-            <button class="btn btnTitle" type="submit" name="id" value=<%=post._id%>><h5 class="card-title"><%=post.title%></h5></button>
+            <button class="btnTitle" type="submit" name="id" value=<%=post._id%>><h5 class="card-title"><%=post.title%></h5></button>
           </form>
         <!-- <h5 class="card-title"><%=post.title%></h5> -->
         <%}%>
     <%if(post.content.length > 100){%>
         <p class="card-text2"><%=post.content.substring(0, 100) + "..."%></p>
-        <p class="card-text2MobileVersion"><%=post.content.substring(0, 450) + "..."%></p>
+        <p class="card-text2MobileVersion"><%=post.content.substring(0, 250) + "..."%></p>
         <%}else{%>
         <p class="card-text2"><%=post.content%></p>
         <%}%>
