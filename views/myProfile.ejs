@@ -1,78 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
-
-    <!-- font awesome 4 -->
-    <script src="https://kit.fontawesome.com/5f007f948d.js" crossorigin="anonymous"></script>
-  </head>
-
-  <div class="container-fluid">
-
-<div class="navbar-wrapper">
+<%-include("partials/header")%>
 
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img class="brand" src="https://image.flaticon.com/icons/svg/3104/3104961.svg" alt="brand">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/myProfile">My profile<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/updateBio">Write bio<span class="sr-only">(current)</span></a>
-
-        <!-- <a class="nav-link" href="/myProfile">Write a bios<span class="sr-only">(current)</span></a> -->
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/write">Write new story<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/timeline">Timeline</a>
-          <a class="dropdown-item" href="/hand">Hand</a>
-          <a class="dropdown-item" href="/thoughts">Thoughts</a>
-          <a class="dropdown-item" href="/journey">Journey</a>
-        </div>
-
-      </li>
-
-    </ul>
-  </div>
-  <div class="logOut">
-
-    <form class="" action="/logOut" method="post">
-      <button class="btn btn-danger" type="submit" name="button">Log out</button>
-    </form>
-
-  </div>
-  </nav>
-
-
-</div>
-
-<!---------------------------- end of navbar--------------------------- -->
 <div class="container-fluid banner-container">
   <img class="banner" src="/files/banner.jpeg" alt="">
 </div>
@@ -81,7 +9,7 @@
 
     <%posts.forEach(function(post){%>
 
-    <div class="card card-post">
+    <div class="card card-post" id="card-post-m">
       <div class="boundaries">
         <div class="date">
           <p class="date-text"><%=post.date%></p>

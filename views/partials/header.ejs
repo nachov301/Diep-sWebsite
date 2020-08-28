@@ -23,28 +23,62 @@
 <div class="navbar-wrapper">
 
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img class="brand" src="https://image.flaticon.com/icons/svg/3104/3104961.svg" alt="brand">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <!-- <img class="brand" src="https://image.flaticon.com/icons/svg/3104/3104961.svg" alt="brand"> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav" style="width:100%">
       <li class="nav-item active">
-        <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link desktop" href="/home"><img class="brand" src="https://image.flaticon.com/icons/svg/3104/3104961.svg" alt="brand"><span class="sr-only">(current)</span></a>
+        <a class="nav-link phone" href="/home">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
+
+      <li class="nav-item nav-items dropdown phone">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My profile
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/updateBio">Write bio<span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="/write">Write new story<span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="/myProfile">Manage posts<span class="sr-only">(current)</span></a>
+          <div class="dropdown-divider"></div>
+          <form class="dropdown-item" action="/logOut" method="post">
+            <button class="btnLink" type="submit" name="button">Log out</button>
+          </form>
+
+          <!-- <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/#writter">Writter</a> -->
+        </div>
+
+      </li>
+
+      <li class="nav-item nav-items categories-desktop active">
+        <a class="nav-link desktop" href="/timeline">Timeline<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item nav-items categories-desktop active">
+          <a class="nav-link desktop" href="/thoughts">Thoughts<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item nav-items categories-desktop active">
+        <a class="nav-link desktop" href="/hand">Hand<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item nav-items categories-desktop active">
+          <a class="nav-link desktop" href="/journey">Journey<span class="sr-only">(current)</span></a>
+      </li>
+      <!-- <li class="nav-item nav-items active">
         <a class="nav-link" href="/myProfile">My profile<span class="sr-only">(current)</span></a>
-      </li>
-      <div class="logOutPhone">
+      </li> -->
+      <!-- <div class="logOutPhone">
 
         <form class="" action="/logOut" method="post">
           <button class="btn btn-logOutPhone" type="submit" name="button">Log out</button>
         </form>
 
-      </div>
-      <li class="nav-item dropdown">
+      </div> -->
+      <li class="nav-item nav-items dropdown phone">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Categories
         </a>
@@ -54,6 +88,26 @@
           <a class="dropdown-item" href="/hand">Hand</a>
           <a class="dropdown-item" href="/thoughts">Thoughts</a>
           <a class="dropdown-item" href="/journey">Journey</a>
+
+          <!-- <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/#writter">Writter</a> -->
+        </div>
+
+      </li>
+
+      <li class="nav-item nav-items dropdown desktop" style="left: 56%">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My profile
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/updateBio">Write bio<span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="/write">Write new story<span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="/myProfile">Manage posts<span class="sr-only">(current)</span></a>
+          <div class="dropdown-divider"></div>
+          <form class="dropdown-item" action="/logOut" method="post">
+            <button class="btnLink" type="submit" name="button">Log out</button>
+          </form>
 
           <!-- <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/#writter">Writter</a> -->
@@ -78,13 +132,13 @@
 
     </ul>
   </div>
-  <div class="logOut">
+  <!-- <div class="logOut">
 
     <form class="" action="/logOut" method="post">
       <button class="btn btn-danger" type="submit" name="button">Log out</button>
     </form>
 
-  </div>
+  </div> -->
   </nav>
 
 
