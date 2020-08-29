@@ -50,6 +50,7 @@ passport.deserializeUser(User.deserializeUser());
 
 const postSchema = {
   title: String,
+  title_lower: String,
   content: String,
   date: String,
   timeline: String,
@@ -298,7 +299,7 @@ app.post("/searchPosts", function(req, res){
 // UserSchema.find({name: { $regex: '.*' + name + '.*' } }).limit(5);
     if (req.isAuthenticated) {
       // to find all the posts which contains the key word that we introduced in the query
-      Post.find({title:{ $regex: '.*' + search + '.*' } }, function(err, foundPost) {
+      Post.find({title_lower:{ $regex: '.*' + search.toLowerCase() + '.*' } }, function(err, foundPost) {
         if (err) {
           console.log(err);
         } else {
@@ -599,6 +600,8 @@ app.post("/compose", function(req, res) {
 
   const title = req.body.postTitle;
   const postTitle = title[0].toUpperCase() + title.substring(1);
+  // store the same as title but in lower case
+  const title_lower = req.body.postTitle.toLowerCase();
   const postText = req.body.postText;
   const timeline = req.body.timeline;
   const hand = req.body.hand;
@@ -644,6 +647,7 @@ app.post("/compose", function(req, res) {
 
   const newPost = new Post({
     title: postTitle,
+    title_lower: title_lower,
     content: postText,
     date: time,
     timeline: timeline,
