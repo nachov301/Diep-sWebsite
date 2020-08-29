@@ -255,18 +255,50 @@ app.get("/journey", function(req, res) {
 
 //=============================================POST request========================================================
 
+// app.post("/searchPosts", function(req, res){
+//
+//   const search = req.body.search;
+//   if(search.length>0){
+//     // for capitalizing the first letter
+//     const searchQuery = search[0].toUpperCase() + search.substring(1)
+//     console.log(searchQuery);
+//
+//     if (req.isAuthenticated) {
+//       Post.find({
+//         title: searchQuery
+//       }, function(err, foundPost) {
+//         if (err) {
+//           console.log(err);
+//         } else {
+//           res.render("categories", {
+//             title: "Found posts",
+//             posts: foundPost
+//           });
+//         }
+//       });
+//     } else {
+//       res.redirect("/");
+//     }
+//
+//   }else{
+//     res.redirect("/home");
+//   }
+//
+//
+// });
+
 app.post("/searchPosts", function(req, res){
 
   const search = req.body.search;
+  console.log("++++++++++++++++++++++++++++++++" + search);
   if(search.length>0){
     // for capitalizing the first letter
-    const searchQuery = search[0].toUpperCase() + search.substring(1)
-    console.log(searchQuery);
-
+    // const searchQuery = search[0].toUpperCase() + search.substring(1)
+    // console.log(searchQuery);
+// UserSchema.find({name: { $regex: '.*' + name + '.*' } }).limit(5);
     if (req.isAuthenticated) {
-      Post.find({
-        title: searchQuery
-      }, function(err, foundPost) {
+      // to find all the posts which contains the key word that we introduced in the query
+      Post.find({title:{ $regex: '.*' + search + '.*' } }, function(err, foundPost) {
         if (err) {
           console.log(err);
         } else {
