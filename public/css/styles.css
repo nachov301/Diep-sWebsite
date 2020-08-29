@@ -599,6 +599,12 @@ hr {
     margin-top: 0;
     margin-bottom: 0;
 }
+.navbar-light .navbar-toggler {
+    color: rgba(0,0,0,.5);
+    border-color: rgba(0,0,0,.1);
+    border: none;
+    outline: none;
+}
 .search-container{
   position: absolute;
     left: 40%;
