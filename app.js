@@ -258,25 +258,33 @@ app.get("/journey", function(req, res) {
 app.post("/searchPosts", function(req, res){
 
   const search = req.body.search;
-  // for capitalizing the first letter
-  const searchQuery = search[0].toUpperCase() + search.substring(1)
-  console.log(searchQuery);
-  if (req.isAuthenticated) {
-    Post.find({
-      title: searchQuery
-    }, function(err, foundPost) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render("categories", {
-          title: "Found posts",
-          posts: foundPost
-        });
-      }
-    });
-  } else {
-    res.redirect("/");
+  if(search.length>0){
+    // for capitalizing the first letter
+    const searchQuery = search[0].toUpperCase() + search.substring(1)
+    console.log(searchQuery);
+
+    if (req.isAuthenticated) {
+      Post.find({
+        title: searchQuery
+      }, function(err, foundPost) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("categories", {
+            title: "Found posts",
+            posts: foundPost
+          });
+        }
+      });
+    } else {
+      res.redirect("/");
+    }
+
+  }else{
+    res.redirect("/home");
   }
+
+
 });
 
 app.post("/timeline", function(req, res){
