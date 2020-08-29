@@ -255,6 +255,30 @@ app.get("/journey", function(req, res) {
 
 //=============================================POST request========================================================
 
+app.post("/searchPosts", function(req, res){
+
+  const search = req.body.search;
+  // for capitalizing the first letter
+  const searchQuery = search[0].toUpperCase() + search.substring(1)
+  console.log(searchQuery);
+  if (req.isAuthenticated) {
+    Post.find({
+      title: searchQuery
+    }, function(err, foundPost) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("categories", {
+          title: "Found posts",
+          posts: foundPost
+        });
+      }
+    });
+  } else {
+    res.redirect("/");
+  }
+});
+
 app.post("/timeline", function(req, res){
   res.redirect("/timeline");
 });
@@ -533,7 +557,8 @@ app.post("/compose", function(req, res) {
 
   // console.log("username is: " + req.user.username);
 
-  const postTitle = req.body.postTitle;
+  const title = req.body.postTitle;
+  const postTitle = title[0].toUpperCase() + title.substring(1);
   const postText = req.body.postText;
   const timeline = req.body.timeline;
   const hand = req.body.hand;

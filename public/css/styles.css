@@ -5,6 +5,29 @@ body {
 label {
   display: block;
 }
+.dropleft{
+    position: absolute;
+    left: 93%;
+    top: 20%;
+}
+.search-container{
+  position: absolute;
+    left: 75%;
+    top: 20%;
+}
+.searchInputDesktop{
+  background: none;
+  outline: none;
+  border: none;
+}
+.searchBtnDesktop{
+  background: none;
+  outline: none;
+  border: none;
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    color: pink;
+}
 .phone{
   display: none;
 }
@@ -575,6 +598,26 @@ hr {
   p {
     margin-top: 0;
     margin-bottom: 0;
+}
+.search-container{
+  position: absolute;
+    left: 40%;
+    top: 25%;
+}
+.searchInput{
+  width: 68%;
+  border-radius: 15px;
+  outline: none;
+  background: none;
+  border: none;
+}
+.searchBtn{
+width: 5rem;
+height: 5rem;
+border-radius: 15px;
+background: none;
+outline: none;
+border: none;
 }
 #card-post-m{
     height: 1450px;
