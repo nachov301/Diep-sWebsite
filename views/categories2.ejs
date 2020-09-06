@@ -33,13 +33,13 @@
         <%if(post.title.length > 35){%>
           <form class="" action="/post" method="post">
             <input class="hidden" type="text" name="postID" value="<%= post._id %>">
-            <button class="btnTitle" type="submit" name="id" value=<%=post._id%>><h5 class="card-title"><%=post.title.substring(0, 35) + "...";%></h5></button>
+            <button class="btnTitle2" type="submit" name="id" value=<%=post._id%>><h5 class="card-title"><%=post.title.substring(0, 35) + "...";%></h5></button>
           </form>
         <!-- <h5 class="card-title"><%=post.title.substring(0, 10) + "...";%></h5> -->
         <%}else{%>
           <form class="" action="/post" method="post">
             <input class="hidden" type="text" name="postID" value="<%= post._id %>">
-            <button class="btnTitle" type="submit" name="id" style="text-align: left;" value=<%=post._id%>><h5 class="card-title"><%=post.title%></h5></button>
+            <button class="btnTitle2" type="submit" name="id" style="text-align: left;" value=<%=post._id%>><h5 class="card-title"><%=post.title%></h5></button>
           </form>
         <!-- <h5 class="card-title"><%=post.title%></h5> -->
         <%}%>

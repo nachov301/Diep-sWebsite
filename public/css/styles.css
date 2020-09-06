@@ -118,14 +118,33 @@ label {
   /* text-decoration: underline; */
   cursor: pointer;
   outline: none;
-  width: 70%;
+  width: 67%;
   text-align: left;
+}
+.btnTitle2{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: black;
+  /* text-decoration: underline; */
+  cursor: pointer;
+  outline: none;
 }
 .btnTitle:focus {
     outline: 0 !important;
 }
 
 .btnTitle:hover{
+  color: #069;
+}
+.btnTitle2:focus {
+    outline: 0 !important;
+}
+
+.btnTitle2:hover{
   color: #069;
 }
 /* to make a button look like a link */
@@ -573,6 +592,10 @@ hr {
   font-weight: 600;
   text-align: left;
 }
+.btnTitle{
+  width: 60%;
+  text-align: left;
+}
 }
 
 @media (max-width: 1085px){
@@ -586,6 +609,10 @@ hr {
   font-size: 0.7rem;
   font-family: font-family: 'Playfair Display', serif;
   font-weight: 600;
+  text-align: left;
+}
+.btnTitle{
+  width: 55%;
   text-align: left;
 }
 
@@ -977,5 +1004,9 @@ border: none;
   }
   .new-posts{
     margin-top: 150px;
+  }
+  .btnTitle{
+    width: 100%;
+    text-align: left;
   }
 }
