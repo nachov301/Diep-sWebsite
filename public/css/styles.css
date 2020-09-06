@@ -118,6 +118,8 @@ label {
   /* text-decoration: underline; */
   cursor: pointer;
   outline: none;
+  width: 70%;
+  text-align: left;
 }
 .btnTitle:focus {
     outline: 0 !important;
