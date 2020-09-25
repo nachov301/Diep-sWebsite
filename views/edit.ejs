@@ -20,7 +20,7 @@
         <label for="">Enter post text</label>
         <textarea class="postContent invisibleInputBox" name="postText" rows="8" cols="80"><%=content%></textarea>
       </div>
-      <div class="container-fluid compose-text">
+      <!-- <div class="container-fluid compose-text">
         <p>Choose a category:</p>
       <span>Kỷ Rồng</span>
       <input type="checkbox" name="kyRong" value="checked">
@@ -34,7 +34,34 @@
       <input type="checkbox" name="hienDay" value="checked">
       <span>Khác</span>
       <input type="checkbox" name="khac" value="checked">
+      </div> -->
+
+      <div class="checkboxCategories">
+       <input class="check" type="radio" name="category" id="kyRong" value="kyRong">
+       <span>Kỷ Rồng</span>
+     </div>
+     <div class="checkboxCategories">
+       <input class="check" type="radio" name="category" id="pangea" value="pangea">
+       <span>Pangea</span>
       </div>
+     <div class="checkboxCategories">
+       <input class="check" type="radio" name="category" id="lemuria" value="lemuria">
+       <span>Lemuria</span>
+     </div>
+     <div class="checkboxCategories">
+       <input class="check" type="radio" name="category" id="atlantis" value="atlantis">
+       <span>Atlantis</span>
+     </div>
+     <div class="checkboxCategories">
+       <input class="check" type="radio" name="category" id="hienDay" value="hienDay">
+       <span>Hiện đại</span>
+     </div>
+     <div class="checkboxCategories">
+       <input class="check" type="radio" name="category" id="khac" value="khac">
+       <span>Khác</span>
+     </div>
+
+     
       <button class="btn-primary btn-lg btn-submit" type="submit" name="button">Submit</button>
       <input class="hidden" type="text" name="postID" value="<%= id %>">
     </form>

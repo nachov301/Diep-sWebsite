@@ -69,11 +69,11 @@ const Post = mongoose.model("Post", postSchema);
 
 // ===========================================GET requests=========================================================
 
-app.get("/updateBio", function(req, res){
+app.get("/updateBio", function(req, res) {
   res.render("updateBio");
 });
 
-app.get("/test", function(req, res){
+app.get("/test", function(req, res) {
   // res.sendFile(__dirname + "/public/test.html");
   res.render("test");
 });
@@ -82,19 +82,21 @@ app.get("/myProfile", function(req, res) {
 
   const user = req.user.username;
   console.log(user);
-  if(req.isAuthenticated){
+  if (req.isAuthenticated) {
 
-    Post.find({userName: user},function (err, foundPost){
-      if(err){
+    Post.find({
+      userName: user
+    }, function(err, foundPost) {
+      if (err) {
         console.log(err);
-      }else{
-        res.render("myProfile",{
+      } else {
+        res.render("myProfile", {
           posts: foundPost
         });
       }
     });
 
-  }else{
+  } else {
     res.redirect("/");
   }
 
@@ -336,18 +338,22 @@ app.get("/khac", function(req, res) {
 //
 // });
 
-app.post("/searchPosts", function(req, res){
+app.post("/searchPosts", function(req, res) {
 
   const search = req.body.search;
   console.log("++++++++++++++++++++++++++++++++" + search);
-  if(search.length>0){
+  if (search.length > 0) {
     // for capitalizing the first letter
     // const searchQuery = search[0].toUpperCase() + search.substring(1)
     // console.log(searchQuery);
-// UserSchema.find({name: { $regex: '.*' + name + '.*' } }).limit(5);
+    // UserSchema.find({name: { $regex: '.*' + name + '.*' } }).limit(5);
     if (req.isAuthenticated) {
       // to find all the posts which contains the key word that we introduced in the query
-      Post.find({title_lower:{ $regex: '.*' + search.toLowerCase() + '.*' } }, function(err, foundPost) {
+      Post.find({
+        title_lower: {
+          $regex: '.*' + search.toLowerCase() + '.*'
+        }
+      }, function(err, foundPost) {
         if (err) {
           console.log(err);
         } else {
@@ -361,82 +367,86 @@ app.post("/searchPosts", function(req, res){
       res.redirect("/");
     }
 
-  }else{
+  } else {
     res.redirect("/home");
   }
 
 
 });
 
-app.post("/kyRong", function(req, res){
+app.post("/kyRong", function(req, res) {
   res.redirect("/kyRong");
 });
 
-app.post("/pangea", function(req, res){
+app.post("/pangea", function(req, res) {
   res.redirect("/pangea");
 });
 
-app.post("/lemuria", function(req, res){
+app.post("/lemuria", function(req, res) {
   res.redirect("/lemuria");
 });
 
-app.post("/atlantis", function(req, res){
+app.post("/atlantis", function(req, res) {
   res.redirect("/atlantis");
 });
 
-app.post("/hienDay", function(req, res){
+app.post("/hienDay", function(req, res) {
   res.redirect("/hienDay");
 });
 
-app.post("/khac", function(req, res){
+app.post("/khac", function(req, res) {
   res.redirect("/khac");
 });
 
-app.post("/user", function(req, res){
+app.post("/user", function(req, res) {
   const user = req.body.userID;
   console.log(user);
-  if(req.isAuthenticated){
-// findOne returns a object and find returns an array
-    User.findOne({username: user}, function(err, foundUser){
-      if(err){
+  if (req.isAuthenticated) {
+    // findOne returns a object and find returns an array
+    User.findOne({
+      username: user
+    }, function(err, foundUser) {
+      if (err) {
         console.log(err);
-      }else{
+      } else {
 
-        if(foundUser){
+        if (foundUser) {
 
           // findOne returns a object and find returns an array
-              Post.find({userName: user},function (err, foundPost){
-                if(err){
-                  console.log(err);
-                }else{
-                      console.log("user found: " + user);
-                      res.render("categories2",{
-                            about: foundUser.about,
-                            title: user,
-                            posts: foundPost
-                          });
-                      }
-                });
+          Post.find({
+            userName: user
+          }, function(err, foundPost) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("user found: " + user);
+              res.render("categories2", {
+                about: foundUser.about,
+                title: user,
+                posts: foundPost
+              });
+            }
+          });
 
         }
       }
     });
 
 
-  }else{
+  } else {
     res.redirect("/");
   }
 
 });
 
-app.post("/remove", function(req, res){
+app.post("/remove", function(req, res) {
   const postID = req.body.postID;
   console.log(postID);
 
-  Post.findByIdAndRemove(postID, function(err){
-    if(err){
+  Post.findByIdAndRemove(postID, function(err) {
+    if (err) {
       console.log(err);
-    }else{
+    } else {
       console.log("Successfully removed");
     }
   });
@@ -444,93 +454,102 @@ app.post("/remove", function(req, res){
 
 });
 //----------------------------------------- update ----------------------------------------
-app.post("/update", function(req, res){
+app.post("/update", function(req, res) {
   console.log(req.body.postID);
   const id = req.body.postID;
-  const kyRong = req.body.kyRong;
-  const pangea = req.body.pangea;
-  const lemuria = req.body.lemuria;
-  const atlantis = req.body.atlantis;
-  const hienDay = req.body.hienDay;
-  const khac = req.body.khac;
+  // const kyRong = req.body.kyRong;
+  // const pangea = req.body.pangea;
+  // const lemuria = req.body.lemuria;
+  // const atlantis = req.body.atlantis;
+  // const hienDay = req.body.hienDay;
+  // const khac = req.body.khac;
 
-  Post.findOne({_id: id}, function(err, foundItem){
-    if(err){
+  const category = req.body.category;
+  console.log("category when editing is: " + category);
+
+  var kyRong = "";
+  var pangea = "";
+  var lemuria = "";
+  var atlantis = "";
+  var hienDay = "";
+  var khac = "";
+
+  switch (category) {
+    case "kyRong":
+      kyRong = "checked";
+      break;
+    case "pangea":
+      pangea = "checked";
+      break;
+    case "lemuria":
+      lemuria = "checked";
+      break;
+    case "atlantis":
+      atlantis = "checked";
+      break;
+    case "hienDay":
+      hienDay = "checked";
+      break;
+    case "khac":
+      khac = "checked";
+      break;
+    default:
+
+  }
+
+  Post.findOne({
+    _id: id
+  }, function(err, foundItem) {
+    if (err) {
       console.log(err);
-    }else{
-      if(!foundItem){
+    } else {
+      if (!foundItem) {
         console.log("wasnt found");
-      }else{
-        if(req.body.postTitle){
+      } else {
+        if (req.body.postTitle) {
           foundItem.title = req.body.postTitle;
 
         }
 
-        if(req.body.postText){
+        if (req.body.postText) {
           foundItem.content = req.body.postText;
 
         }
 
-        if(req.body.kyRong === "checked"){
-          foundItem.kyRong = "";
-        }else{
-          foundItem.kyRong = "checked";
-        }
 
-        if(req.body.pangea === "checked"){
-          foundItem.pangea = "";
-        }else{
-          foundItem.pangea = "checked";
-        }
-
-        if(req.body.lemuria === "checked"){
-          foundItem.lemuria = "";
-        }else{
-          foundItem.lemuria = "checked";
-        }
-
-        if(req.body.atlantis === "checked"){
-          foundItem.atlantis = "";
-        }else{
-          foundItem.atlantis = "checked";
-        }
-
-        if(req.body.hienDay === "checked"){
-          foundItem.hienDay = "";
-        }else{
-          foundItem.hienDay = "checked";
-        }
-
-        if(req.body.khac === "checked"){
-          foundItem.khac = "";
-        }else{
-          foundItem.khac = "checked";
-        }
+          foundItem.kyRong = kyRong;
+          foundItem.pangea = pangea;
+          foundItem.lemuria = lemuria;
+          foundItem.atlantis = atlantis;
+          foundItem.hienDay = hienDay;
+          foundItem.khac = khac;
 
         foundItem.save();
       }
     }
   });
 
-res.redirect("/myProfile");
+  res.redirect("/myProfile");
 
 });
 //----------------------------------------- update ----------------------------------------
 
-app.post("/updateBio", function(req, res){
+app.post("/updateBio", function(req, res) {
   const userID = req.user._id;
   console.log("user id is: " + userID);
   const bio = req.body.bio;
   console.log("req.body.bio is" + bio);
 
-  User.findOne({_id: userID}, function(err, foundUser){
-    if(err){
+  User.findOne({
+    _id: userID
+  }, function(err, foundUser) {
+    if (err) {
       console.log(err);
-    }else{
-      if(!foundUser){
+    } else {
+      if (!foundUser) {
         console.log("user wasnt found");
-      }else{
-        if(req.body.bio){
+      } else {
+        if (req.body.bio) {
           console.log(req.body.bio);
           console.log("bio updated");
           foundUser.about = bio;
@@ -545,13 +564,13 @@ app.post("/updateBio", function(req, res){
 
 });
 
-app.post("aboutMe", function(req, res){
+app.post("aboutMe", function(req, res) {
   const userID = req.user.username;
 
 
 });
 
-app.post("/postToEdit", function(req, res){
+app.post("/postToEdit", function(req, res) {
 
   // const user = req.user.username;
   // console.log(user);
@@ -605,35 +624,37 @@ app.post("/register", function(req, res) {
   // console.log(password);
   // console.log(confirmPassword);
 
- User.findOne({user: username}, function(err, foundUser){
-   if(err){
-     console.log(err);
-   }else{
-     if(!foundUser){
-       if (password === confirmPassword) {
-         User.register({
-           username: req.body.username
-         }, req.body.password, function(err, user) {
-           console.log(req.body.username);
-           if (err) {
-             console.log(err);
-             console.log("error");
-             res.redirect("/");
-           } else {
-             passport.authenticate("local")(req, res, function() {
-               res.redirect("/home");
-             });
-           }
+  User.findOne({
+    user: username
+  }, function(err, foundUser) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (!foundUser) {
+        if (password === confirmPassword) {
+          User.register({
+            username: req.body.username
+          }, req.body.password, function(err, user) {
+            console.log(req.body.username);
+            if (err) {
+              console.log(err);
+              console.log("error");
+              res.redirect("/");
+            } else {
+              passport.authenticate("local")(req, res, function() {
+                res.redirect("/home");
+              });
+            }
 
-         });
-       } else {
-         res.redirect("signUp");
-       }
-     }else{
-       res.redirect("signUp");
-     }
-   }
- });
+          });
+        } else {
+          res.redirect("signUp");
+        }
+      } else {
+        res.redirect("signUp");
+      }
+    }
+  });
 
 
 
@@ -674,17 +695,19 @@ app.post("/post", function(req, res) {
   var likes = Number(req.body.likes);
   const postID = req.body.postID;
 
-    // console.log("views: " + likes + " postID: " + postID);
+  // console.log("views: " + likes + " postID: " + postID);
 
-    Post.findOne({_id: postID}, function(err, foundPost){
-      if(err){
-        console.log(err);
-      }else{
-        likes = likes + 1;
-        foundPost.likes = likes;
-        foundPost.save();
-      }
-    });
+  Post.findOne({
+    _id: postID
+  }, function(err, foundPost) {
+    if (err) {
+      console.log(err);
+    } else {
+      likes = likes + 1;
+      foundPost.likes = likes;
+      foundPost.save();
+    }
+  });
 
 
   const post_id = req.body.id;
@@ -711,43 +734,75 @@ app.post("/compose", function(req, res) {
   // store the same as title but in lower case
   const title_lower = req.body.postTitle.toLowerCase();
   const postText = req.body.postText;
-  const kyRong = req.body.kyRong;
-  const pangea = req.body.pangea;
-  const lemuria = req.body.lemuria;
-  const atlantis = req.body.atlantis;
-  const hienDay = req.body.hienDay;
-  const khac = req.body.khac;
+  // const kyRong = req.body.kyRong;
+  // const pangea = req.body.pangea;
+  // const lemuria = req.body.lemuria;
+  // const atlantis = req.body.atlantis;
+  // const hienDay = req.body.hienDay;
+  // const khac = req.body.khac;
+  const category = req.body.category;
+  console.log("The selected category is: " + category);
+
+  var kyRong = "";
+  var pangea = "";
+  var lemuria = "";
+  var atlantis = "";
+  var hienDay = "";
+  var khac = "";
+
+  switch (category) {
+    case "kyRong":
+      kyRong = "checked";
+      break;
+    case "pangea":
+      pangea = "checked";
+      break;
+    case "lemuria":
+      lemuria = "checked";
+      break;
+    case "atlantis":
+      atlantis = "checked";
+      break;
+    case "hienDay":
+      hienDay = "checked";
+      break;
+    case "khac":
+      khac = "checked";
+      break;
+    default:
+
+  }
 
   const url = req.body.postURL;
   // to get my username
   const userName = req.user.username;
-// to calculate the reading time---------------------
+  // to calculate the reading time---------------------
 
-    const wordsPerMinute = 200;
-    const noOfWords = postText.split(/\s/g).length;
-    const minutes = noOfWords / wordsPerMinute;
-    // to round up, if we wanted to round down we'd use floor instead
-    const readTime = Math.ceil(minutes);
+  const wordsPerMinute = 200;
+  const noOfWords = postText.split(/\s/g).length;
+  const minutes = noOfWords / wordsPerMinute;
+  // to round up, if we wanted to round down we'd use floor instead
+  const readTime = Math.ceil(minutes);
 
-// ---------------------------------------------------
-// we create an array which holds the name of the months so according to the number that we get from getMonth method some of
-// them is gonna be picked so we can show words instead of the number of the month
-    var month = new Array();
-    month[0] = "Jan";
-    month[1] = "Feb";
-    month[2] = "Mar";
-    month[3] = "Apr";
-    month[4] = "May";
-    month[5] = "Jun";
-    month[6] = "Jul";
-    month[7] = "Aug";
-    month[8] = "Sep";
-    month[9] = "Oct";
-    month[10] = "Nov";
-    month[11] = "Dec";
+  // ---------------------------------------------------
+  // we create an array which holds the name of the months so according to the number that we get from getMonth method some of
+  // them is gonna be picked so we can show words instead of the number of the month
+  var month = new Array();
+  month[0] = "Jan";
+  month[1] = "Feb";
+  month[2] = "Mar";
+  month[3] = "Apr";
+  month[4] = "May";
+  month[5] = "Jun";
+  month[6] = "Jul";
+  month[7] = "Aug";
+  month[8] = "Sep";
+  month[9] = "Oct";
+  month[10] = "Nov";
+  month[11] = "Dec";
 
-    var d = new Date();
-    var n = month[d.getMonth()];
+  var d = new Date();
+  var n = month[d.getMonth()];
 
 
   var dateTime = new Date();
