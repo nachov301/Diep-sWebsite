@@ -64,61 +64,110 @@
                <div class="margin-top">
 
 
-                <% if(post.timeline === "checked"){%>
+                 <% if((post.kyRong === "checked") || (post.pangea=== "checked") || (post.lemuria=== "checked") || (post.atlantis=== "checked") || (post.hienDay=== "checked") || (post.khac=== "checked")){%>
+                 <div class="mv">
 
+                 <form class="mv2" action="/user" method="post">
+                  <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+                 </form>
+                 <p class="mv2" style="margin: auto 0 auto 0"> in </p>
+
+                 <!-- <form class="mv2" action="/kyRong" method="post">
+                  <button class="btnLink" type="submit">Kỷ Rồng</button>
+                 </form> -->
+
+                 </div>
+
+                 <%} %>
+
+                 <% if(post.kyRong === "checked"){%>
               <div class="mv">
 
-                <form class="mv2" action="/user" method="post">
+                 <!-- <form class="mv2" action="/user" method="post">
                   <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
                 </form>
-                <p class="mv2"> in </p>
-                <form class="mv2" action="/timeline" method="post">
-                  <button class="btnLink" type="submit">Timeline</button>
+                <p class="mv2"> in </p> -->
+
+                <form class="mv2" action="/kyRong" method="post">
+                  <button class="btnLink" type="submit">Kỷ Rồng</button>
                 </form>
 
               </div>
 
               <%} %>
-              <% if(post.hand === "checked"){%>
+              <% if(post.pangea === "checked"){%>
 
               <div class="mv">
 
-                <form class="mv2" action="/user" method="post">
+                <!-- <form class="mv2" action="/user" method="post">
                   <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
                 </form>
-                <p class="mv2"> in </p>
-                <form class="mv2" action="/hand" method="post">
-                  <button class="btnLink" type="submit">Hand</button>
+                <p class="mv2"> in </p> -->
+                <form class="mv2" action="/pangea" method="post">
+                  <button class="btnLink" type="submit">Pangea</button>
                 </form>
 
               </div>
 
               <%} %>
-              <% if(post.thoughts === "checked"){%>
+              <% if(post.lemuria === "checked"){%>
 
               <div class="mv">
 
-                <form class="mv2" action="/user" method="post">
+                <!-- <form class="mv2" action="/user" method="post">
                   <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
                 </form>
-                <p class="mv2"> in </p>
-                <form class="mv2" action="/thoughts" method="post">
-                  <button class="btnLink" type="submit">Thoughts</button>
+                <p class="mv2"> in </p> -->
+                <form class="mv2" action="/lemuria" method="post">
+                  <button class="btnLink" type="submit">Lemuria</button>
                 </form>
 
               </div>
 
               <%} %>
-              <% if(post.journey === "checked"){%>
+              <% if(post.atlantis === "checked"){%>
 
               <div class="mv">
 
-                <form class="mv2" action="/user" method="post">
+                <!-- <form class="mv2" action="/user" method="post">
                   <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
                 </form>
-                <p class="mv2"> in </p>
-                <form class="mv2" action="/journey" method="post">
-                  <button class="btnLink" type="submit">Journey</button>
+                <p class="mv2"> in </p> -->
+                <form class="mv2" action="/atlantis" method="post">
+                  <button class="btnLink" type="submit">Atlantis</button>
+                </form>
+
+              </div>
+
+
+              <%} %>
+              <% if(post.hienDay === "checked"){%>
+
+              <div class="mv">
+
+                <!-- <form class="mv2" action="/user" method="post">
+                  <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+                </form>
+                <p class="mv2"> in </p> -->
+                <form class="mv2" action="/hienDay" method="post">
+                  <button class="btnLink" type="submit">Hiện đại</button>
+                </form>
+
+              </div>
+
+
+              <%} %>
+
+  <% if(post.khac === "checked"){%>
+              <div class="mv">
+
+                <!-- <form class="mv2" action="/user" method="post">
+                  <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+                </form>
+                <p class="mv2"> in </p> -->
+
+                <form class="mv2" action="/khac" method="post">
+                  <button class="btnLink" type="submit">Khác</button>
                 </form>
 
               </div>

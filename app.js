@@ -99,7 +99,7 @@ app.get("/myProfile", function(req, res) {
   }
 
 });
-
+//-----------------------------------------------signUp here--------------------------------------------------------
 // app.get("/signUp", function(req, res) {
 //   res.render("signUp");
 // });
@@ -506,7 +506,7 @@ app.post("/update", function(req, res){
         }else{
           foundItem.khac = "checked";
         }
-        
+
         foundItem.save();
       }
     }
