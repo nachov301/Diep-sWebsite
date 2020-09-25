@@ -53,10 +53,12 @@ const postSchema = {
   title_lower: String,
   content: String,
   date: String,
-  timeline: String,
-  hand: String,
-  thoughts: String,
-  journey: String,
+  kyRong: String,
+  pangea: String,
+  lemuria: String,
+  atlantis: String,
+  hienDay: String,
+  khac: String,
   url: String,
   likes: Number,
   readingTime: Number,
@@ -98,9 +100,9 @@ app.get("/myProfile", function(req, res) {
 
 });
 
-app.get("/signUp", function(req, res) {
-  res.render("signUp");
-});
+// app.get("/signUp", function(req, res) {
+//   res.render("signUp");
+// });
 
 app.get("/", function(req, res) {
   res.render("login", {
@@ -166,17 +168,19 @@ app.get("/write", function(req, res) {
 
 });
 
-app.get("/timeline", function(req, res) {
+
+//for posts====================================================================
+app.get("/kyRong", function(req, res) {
 
   if (req.isAuthenticated) {
     Post.find({
-      timeline: "checked"
+      kyRong: "checked"
     }, function(err, foundPost) {
       if (err) {
         console.log(err);
       } else {
         res.render("categories", {
-          title: "Timeline Posts",
+          title: "Kỷ Rồng Posts",
           posts: foundPost
         });
       }
@@ -188,17 +192,17 @@ app.get("/timeline", function(req, res) {
 
 });
 
-app.get("/hand", function(req, res) {
+app.get("/pangea", function(req, res) {
 
   if (req.isAuthenticated) {
     Post.find({
-      hand: "checked"
+      pangea: "checked"
     }, function(err, foundPost) {
       if (err) {
         console.log(err);
       } else {
         res.render("categories", {
-          title: "Hand Posts",
+          title: "Pangea Posts",
           posts: foundPost
         });
       }
@@ -210,17 +214,17 @@ app.get("/hand", function(req, res) {
 
 });
 
-app.get("/thoughts", function(req, res) {
+app.get("/lemuria", function(req, res) {
 
   if (req.isAuthenticated) {
     Post.find({
-      thoughts: "checked"
+      lemuria: "checked"
     }, function(err, foundPost) {
       if (err) {
         console.log(err);
       } else {
         res.render("categories", {
-          title: "Thoughts Posts",
+          title: "Lemuria Posts",
           posts: foundPost
         });
       }
@@ -232,17 +236,61 @@ app.get("/thoughts", function(req, res) {
 
 });
 
-app.get("/journey", function(req, res) {
+app.get("/atlantis", function(req, res) {
 
   if (req.isAuthenticated) {
     Post.find({
-      journey: "checked"
+      atlantis: "checked"
     }, function(err, foundPost) {
       if (err) {
         console.log(err);
       } else {
         res.render("categories", {
-          title: "Journey Posts",
+          title: "Atlantis Posts",
+          posts: foundPost
+        });
+      }
+    });
+  } else {
+    res.redirect("/");
+  }
+
+
+});
+
+app.get("/hienDay", function(req, res) {
+
+  if (req.isAuthenticated) {
+    Post.find({
+      hienDay: "checked"
+    }, function(err, foundPost) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("categories", {
+          title: "Hiện đại Posts",
+          posts: foundPost
+        });
+      }
+    });
+  } else {
+    res.redirect("/");
+  }
+
+
+});
+
+app.get("/khac", function(req, res) {
+
+  if (req.isAuthenticated) {
+    Post.find({
+      khac: "checked"
+    }, function(err, foundPost) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("categories", {
+          title: "Khác Posts",
           posts: foundPost
         });
       }
@@ -320,20 +368,28 @@ app.post("/searchPosts", function(req, res){
 
 });
 
-app.post("/timeline", function(req, res){
-  res.redirect("/timeline");
+app.post("/kyRong", function(req, res){
+  res.redirect("/kyRong");
 });
 
-app.post("/journey", function(req, res){
-  res.redirect("/journey");
+app.post("/pangea", function(req, res){
+  res.redirect("/pangea");
 });
 
-app.post("/thoughts", function(req, res){
-  res.redirect("/thoughts");
+app.post("/lemuria", function(req, res){
+  res.redirect("/lemuria");
 });
 
-app.post("/hand", function(req, res){
-  res.redirect("/hand");
+app.post("/atlantis", function(req, res){
+  res.redirect("/atlantis");
+});
+
+app.post("/hienDay", function(req, res){
+  res.redirect("/hienDay");
+});
+
+app.post("/khac", function(req, res){
+  res.redirect("/khac");
 });
 
 app.post("/user", function(req, res){
@@ -391,6 +447,12 @@ app.post("/remove", function(req, res){
 app.post("/update", function(req, res){
   console.log(req.body.postID);
   const id = req.body.postID;
+  const kyRong = req.body.kyRong;
+  const pangea = req.body.pangea;
+  const lemuria = req.body.lemuria;
+  const atlantis = req.body.atlantis;
+  const hienDay = req.body.hienDay;
+  const khac = req.body.khac;
 
   Post.findOne({_id: id}, function(err, foundItem){
     if(err){
@@ -403,10 +465,48 @@ app.post("/update", function(req, res){
           foundItem.title = req.body.postTitle;
 
         }
+
         if(req.body.postText){
           foundItem.content = req.body.postText;
 
         }
+
+        if(req.body.kyRong === "checked"){
+          foundItem.kyRong = "";
+        }else{
+          foundItem.kyRong = "checked";
+        }
+
+        if(req.body.pangea === "checked"){
+          foundItem.pangea = "";
+        }else{
+          foundItem.pangea = "checked";
+        }
+
+        if(req.body.lemuria === "checked"){
+          foundItem.lemuria = "";
+        }else{
+          foundItem.lemuria = "checked";
+        }
+
+        if(req.body.atlantis === "checked"){
+          foundItem.atlantis = "";
+        }else{
+          foundItem.atlantis = "checked";
+        }
+
+        if(req.body.hienDay === "checked"){
+          foundItem.hienDay = "";
+        }else{
+          foundItem.hienDay = "checked";
+        }
+
+        if(req.body.khac === "checked"){
+          foundItem.khac = "";
+        }else{
+          foundItem.khac = "checked";
+        }
+        
         foundItem.save();
       }
     }
@@ -544,20 +644,28 @@ app.post("signUp", function(req, res) {
   res.redirect("/signUp");
 });
 
-app.post("/timeline", function(req, res) {
-  res.redirect("/timeline");
+app.post("/kyRong", function(req, res) {
+  res.redirect("/kyRong");
 });
 
-app.post("/hand", function(req, res) {
-  res.redirect("/hand");
+app.post("/pangea", function(req, res) {
+  res.redirect("/pangea");
 });
 
-app.post("/thoughts", function(req, res) {
-  res.redirect("/thoughts");
+app.post("/lemuria", function(req, res) {
+  res.redirect("/lemuria");
 });
 
-app.post("/journey", function(req, res) {
-  res.redirect("/journey");
+app.post("/atlantis", function(req, res) {
+  res.redirect("/atlantis");
+});
+
+app.post("/hienDay", function(req, res) {
+  res.redirect("/hienDay");
+});
+
+app.post("/khac", function(req, res) {
+  res.redirect("/khac");
 });
 
 app.post("/post", function(req, res) {
@@ -603,10 +711,13 @@ app.post("/compose", function(req, res) {
   // store the same as title but in lower case
   const title_lower = req.body.postTitle.toLowerCase();
   const postText = req.body.postText;
-  const timeline = req.body.timeline;
-  const hand = req.body.hand;
-  const thoughts = req.body.thoughts;
-  const journey = req.body.journey;
+  const kyRong = req.body.kyRong;
+  const pangea = req.body.pangea;
+  const lemuria = req.body.lemuria;
+  const atlantis = req.body.atlantis;
+  const hienDay = req.body.hienDay;
+  const khac = req.body.khac;
+
   const url = req.body.postURL;
   // to get my username
   const userName = req.user.username;
@@ -650,10 +761,12 @@ app.post("/compose", function(req, res) {
     title_lower: title_lower,
     content: postText,
     date: time,
-    timeline: timeline,
-    hand: hand,
-    thoughts: thoughts,
-    journey: journey,
+    kyRong: kyRong,
+    pangea: pangea,
+    lemuria: lemuria,
+    atlantis: atlantis,
+    hienDay: hienDay,
+    khac: khac,
     url: url,
     likes: 1,
     readingTime: readTime,
