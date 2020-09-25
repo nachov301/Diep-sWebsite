@@ -5,6 +5,19 @@ body {
 label {
   display: block;
 }
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+.nav-link{
+  -webkit-transition: color 0.6s; /* For Safari 3.0 to 6.0 */
+          transition: color 0.6s; /* For modern browsers */
+}
+.nav-link:hover{
+  color: pink !important;
+  text-decoration: underline;
+}
 .dropleft{
     position: absolute;
     left: 93%;
