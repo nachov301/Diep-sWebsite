@@ -57,6 +57,7 @@ label {
 }
 .post-p{
   color: gray;
+  white-space: pre-wrap;
 }
 .checkboxCategories{
   display: block;
