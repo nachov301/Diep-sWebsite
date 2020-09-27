@@ -16,7 +16,7 @@ label {
 }
 .nav-link:hover{
   color: pink !important;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 .dropleft{
     position: absolute;
