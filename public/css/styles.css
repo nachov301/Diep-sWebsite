@@ -5,9 +5,44 @@ body {
 label {
   display: block;
 }
-/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++++++++++++++++++back-to-top button++++++++++++++++++++++++++++ */
+.back-to-top {
+    background-color: white;
+    border-style:solid;
+    border-width:1px;
+    border-color:pink;
+    color: pink;
+    opacity: 0;
+    transition: opacity .6s ease-in-out;
+    z-index: 999;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 50%;
+  }
 
-/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  a.back-to-top {
+    font-weight: 1000;
+    letter-spacing: 2px;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.6;
+    padding-left: 2px;
+    padding-top: 14px;
+  }
+
+  .back-to-top:hover, .back-to-top:focus, .back-to-top:visited {
+    color: pink;
+  }
+
+  .back-to-top.show {
+    opacity: 1;
+  }
+/* +++++++++++++++++++++++++++++++back-to-top button++++++++++++++++++++++++++++ */
 
 
 .nav-link{
@@ -1023,4 +1058,42 @@ border: none;
     width: 100%;
     text-align: left;
   }
+  /* +++++++++++++++++++++++++++++++back-to-top button++++++++++++++++++++++++++++ */
+  .back-to-top {
+      background-color: white;
+      border-style:solid;
+      border-width:1px;
+      border-color:pink;
+      color: pink;
+      opacity: 0;
+      transition: opacity .6s ease-in-out;
+      z-index: 999;
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 150px;
+      height: 150px;
+      box-sizing: border-box;
+      border-radius: 50%;
+    }
+
+    a.back-to-top {
+      font-weight: 1000;
+      letter-spacing: 2px;
+      font-size: 34px;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.6;
+      padding-left: 2px;
+      padding-top: 45px;
+    }
+
+    .back-to-top:hover, .back-to-top:focus, .back-to-top:visited {
+      color: pink;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+    }
+  /* +++++++++++++++++++++++++++++++back-to-top button++++++++++++++++++++++++++++ */
 }
