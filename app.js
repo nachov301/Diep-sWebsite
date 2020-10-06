@@ -62,7 +62,8 @@ const postSchema = {
   url: String,
   likes: Number,
   readingTime: Number,
-  userName: String
+  userName: String,
+  visibility: String
 }
 
 const Post = mongoose.model("Post", postSchema);
@@ -465,8 +466,9 @@ app.post("/update", function(req, res) {
   // const khac = req.body.khac;
 
   const category = req.body.category;
+  const visibility = req.body.visibility;
   console.log("category when editing is: " + category);
-
+  console.log("visibility when editing is: " + visibility);
   var kyRong = "";
   var pangea = "";
   var lemuria = "";
@@ -524,6 +526,7 @@ app.post("/update", function(req, res) {
           foundItem.hienDay = hienDay;
           foundItem.khac = khac;
 
+          foundItem.visibility = visibility;
         foundItem.save();
       }
     }
@@ -741,7 +744,9 @@ app.post("/compose", function(req, res) {
   // const hienDay = req.body.hienDay;
   // const khac = req.body.khac;
   const category = req.body.category;
+  const visibility = req.body.visibility;
   console.log("The selected category is: " + category);
+  console.log("The selected visibility is: " + visibility);
 
   var kyRong = "";
   var pangea = "";
@@ -825,7 +830,8 @@ app.post("/compose", function(req, res) {
     url: url,
     likes: 1,
     readingTime: readTime,
-    userName: userName
+    userName: userName,
+    visibility: visibility
   });
 
   newPost.save();

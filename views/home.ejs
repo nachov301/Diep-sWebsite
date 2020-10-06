@@ -15,6 +15,10 @@
         <% posts.sort((a, b) => (a < b) ? 1 : -1); %>
         <%posts.forEach(function(post){%>
 
+<!-- checking visibility -->
+<%if(post.visibility === "public") {%>
+
+
         <div class="home-posts">
 
           <div class="title-home">
@@ -30,6 +34,8 @@
           </div>
 
               <%if(post.title.length > 100){%>
+
+
 
               <form class="mv" action="/post" method="post">
                 <input class="hidden" type="text" name="likes" value="<%= post.likes %>">
@@ -48,6 +54,7 @@
                   <h5 class="card-title-home"><%=post.title%></h5>
                 </button>
               </form>
+
 
               <%}%>
 
@@ -190,7 +197,7 @@
 
           </div>
 
-
+          <%}%>
 
 
           <% }); %>
@@ -218,6 +225,8 @@
             <%cont2++;%>
             <%if(cont2 <= cont){ %>
 
+  <!--checking visibility-->
+<%if(post.visibility === "public") {%>
 
             <div class="col4-posts phoneSize">
               <div class="title-home phoneSize">
@@ -283,7 +292,7 @@
                 <hr class="phoneSize">
                 <% } %>
 
-
+                <%}%>
 
                 <% }); %>
 
@@ -307,7 +316,7 @@
 
 
         </script> -->
-        
+
 
 </body>
 

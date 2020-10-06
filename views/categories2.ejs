@@ -17,6 +17,8 @@
     <% posts.sort((a, b) => (a < b) ? 1 : -1); %>
     <%posts.forEach(function(post){%>
 
+      <%if (post.visibility === "public"){%>
+
     <div class="card card-post">
       <div class="boundaries">
         <div class="date">
@@ -65,7 +67,7 @@
 
   </div>
 </div>
-
+          <%}%>
         <% }); %>
       </div>
 
