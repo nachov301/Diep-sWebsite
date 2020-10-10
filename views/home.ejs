@@ -12,7 +12,9 @@
 
         <hr class="separator">
         <!-- for reverting the post so the newest its gonna appear first -->
+        <%var j = 0 %>
         <% posts.sort((a, b) => (a < b) ? 1 : -1); %>
+
         <%posts.forEach(function(post){%>
 
 <!-- checking visibility -->
@@ -187,7 +189,27 @@
 
                 <p class="mv"><%=post.date%></p>
                 <p class="mv"><%= post.readingTime %> min read </p>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
+                 <form id="myFormID" class="mv" action="/" method="post">
+                   <%var flag = false%>
+                   <%for (var i=0; i<favourites.length; i++){%>
+
+                     <%if ((favourites[i]==post._id) && (flag==false)) {%>
+                      <%flag=true%>
+                       <button class="btnLink fav go_button" type="submit" name="favouriteId" value="<%=post._id%>"><i class="fas fa-bookmark"></i></button>
+
+                     <!-- <input class="uname_input" type="text" name="" value="" placeholder="here <%=j%>"> -->
+
+                     <!-- <button class="btnLink fav go_button2" type="submit" name="favouriteId" value="<%=post._id%>"><i class="far fa-bookmark"></i></button> -->
+                     <%}%>
+                  <%}%>
+                  <%if(flag==false){%>
+                    <button class="btnLink fav go_button" type="submit" name="favouriteId" value="<%=post._id%>"><i class="far fa-bookmark"></i></button>
+                  <%}%>
+                 </form>
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
               </div>
 
 
@@ -259,6 +281,7 @@
 
                 <%}%>
 
+
                       </div>
 
                       <!-- <div class="post-home">
@@ -287,8 +310,12 @@
                 </form> -->
 
                 <!-- <p class="mv">Views: <%= post.likes %></p> -->
+
                 <p class="mvCol-4 phoneSize"><%= post.readingTime %> minutes read </p>
                 <p class="mvCol-4 phoneSize"><%= post.date %></p>
+
+
+
                 <hr class="phoneSize">
                 <% } %>
 
@@ -307,15 +334,83 @@
         <!-- <h1>Hello</h1> -->
 
         <!-- for using jQuery -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <script>
 
+// $("body").keypress(function(event){
+//   $("h1").text(event.key);
+// });
+
+    for (var i = 0; i < document.querySelectorAll(".go_button").length; i++) {
+      document.querySelectorAll(".go_button")[i].addEventListener("click",function(e){
+         e.preventDefault();
+    // with this.value im giving the value of the button which was pressed to the variable postId
+        var postId = this.value;
+        // calling the function sendData and passing postId as a paramether
 
 
+// we find the class inside the element i inside this
+        if($(this).find("i").hasClass("far fa-bookmark")){
+          // this.innerHTML = "unsave";
+          console.log("if");
+          // we find the i element inside this element and we specify the class we have and the class we wanted to change it to
+          $(this).find("i").toggleClass("far fa-bookmark fas fa-bookmark");
+          sendData(postId);
+        }else{
+          console.log("else");
+          // this.innerHTML="save";
+          $(this).find("i").toggleClass("far fa-bookmark fas fa-bookmark");
+          deleteData(postId);
+
+        }
+          console.log(postId);
+      });
+    }
+
+    // get uName from uname-input
+      // let unameText = document.getElementsByClassName("uname_input").value;
+function sendData(data){
+  $.ajax({
+    type: "POST",
+    url: "/",
+    contentType: "application/json",
+    data: JSON.stringify({data: data}),
+    /*
+    success:(data)=>{
+    console.log(data);
+    if (data != "") {
+      console.log(JSON.parse(data));
+    }
+    updatePage(JSON.parse(data));
+  }
+    */
+  });
+}
+
+function deleteData(data){
+  $.ajax({
+    type: "POST",
+    url: "/deleteData",
+    contentType: "application/json",
+    data: JSON.stringify({data: data}),
+    /*
+    success:(data)=>{
+    console.log(data);
+    if (data != "") {
+      console.log(JSON.parse(data));
+    }
+    updatePage(JSON.parse(data));
+  }
+    */
+  });
+}
 
 
-        </script> -->
+  // })
+
+
+        </script>
 
 
 </body>

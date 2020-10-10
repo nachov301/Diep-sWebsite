@@ -51,6 +51,21 @@
         <%}else{%>
         <p class="card-text2"><%=post.content%></p>
         <%}%>
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <form id="myFormID" class="mv" action="/" method="post">
+          <%var flag = false%>
+          <%for (var i=0; i<favourites.length; i++){%>
+
+            <%if ((favourites[i]==post._id) && (flag==false)) {%>
+             <%flag=true%>
+              <button class="btnLink fav go_button" type="submit" name="favouriteId" value="<%=post._id%>"><i class="fas fa-bookmark"></i></button>
+            <%}%>
+         <%}%>
+         <%if(flag==false){%>
+           <button class="btnLink fav go_button" type="submit" name="favouriteId" value="<%=post._id%>"><i class="far fa-bookmark"></i></button>
+         <%}%>
+        </form>
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <!-- <form class="" action="/post" method="post">
           <input class="hidden" type="text" name="postID" value="<%= post._id %>">
           <button class="btn btnTitle" type="submit" name="id" value=<%=post._id%>><%=post.title%></button>
@@ -70,5 +85,87 @@
         <%}%>
         <% }); %>
       </div>
+
+      <!-- for using jQuery -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+      <script>
+
+// $("body").keypress(function(event){
+//   $("h1").text(event.key);
+// });
+
+  for (var i = 0; i < document.querySelectorAll(".go_button").length; i++) {
+    document.querySelectorAll(".go_button")[i].addEventListener("click",function(e){
+       e.preventDefault();
+  // with this.value im giving the value of the button which was pressed to the variable postId
+      var postId = this.value;
+      // calling the function sendData and passing postId as a paramether
+      console.log(this.innerHTML);
+      // we find the class inside the element i inside this
+              if($(this).find("i").hasClass("far fa-bookmark")){
+                // this.innerHTML = "unsave";
+                console.log("if");
+                // we find the i element inside this element and we specify the class we have and the class we wanted to change it to
+                $(this).find("i").toggleClass("far fa-bookmark fas fa-bookmark");
+                sendData(postId);
+              }else{
+                console.log("else");
+                // this.innerHTML="save";
+                $(this).find("i").toggleClass("far fa-bookmark fas fa-bookmark");
+                deleteData(postId);
+
+              }
+      // this.innerHTML = <i class="fas fa-bookmark"></i>;
+
+        console.log(postId);
+
+        // sendData(postId);
+    });
+  }
+
+  // get uName from uname-input
+    // let unameText = document.getElementsByClassName("uname_input").value;
+function sendData(data){
+$.ajax({
+  type: "POST",
+  url: "/",
+  contentType: "application/json",
+  data: JSON.stringify({data: data}),
+  /*
+  success:(data)=>{
+  console.log(data);
+  if (data != "") {
+    console.log(JSON.parse(data));
+  }
+  updatePage(JSON.parse(data));
+}
+  */
+});
+}
+
+function deleteData(data){
+$.ajax({
+  type: "POST",
+  url: "/deleteData",
+  contentType: "application/json",
+  data: JSON.stringify({data: data}),
+  /*
+  success:(data)=>{
+  console.log(data);
+  if (data != "") {
+    console.log(JSON.parse(data));
+  }
+  updatePage(JSON.parse(data));
+}
+  */
+});
+}
+
+
+// })
+
+
+      </script>
 
 <%-include("partials/footer")%>

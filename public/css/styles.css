@@ -6,6 +6,9 @@ label {
   display: block;
 }
 /* +++++++++++++++++++++++++++++++back-to-top button++++++++++++++++++++++++++++ */
+.fa-bookmark{
+  margin-left: 5px;
+}
 .back-to-top {
     background-color: white;
     border-style:solid;

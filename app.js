@@ -34,7 +34,8 @@ const userSchema = new mongoose.Schema({
   user: String,
   password: String,
   postIDs: [],
-  about: String
+  about: String,
+  favourites: []
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -67,6 +68,9 @@ const postSchema = {
 }
 
 const Post = mongoose.model("Post", postSchema);
+
+// use bodyParser middleware for json requests
+app.use(bodyParser.json());
 
 // ===========================================GET requests=========================================================
 
@@ -119,19 +123,48 @@ app.get("/failureLogin", function(req, res) {
   });
 });
 
+// app.get("/home", function(req, res) {
+//
+//   if (req.isAuthenticated()) {
+//     Post.find({}, function(err, foundPost) {
+//       // console.log(foundPost);
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         res.render("home", {
+//           posts: foundPost
+//           // to sort the post by a key value
+//           // orderedPost: foundPost.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
+//         });
+//       }
+//     });
+//   } else {
+//     res.redirect("/signUp");
+//   }
+//
+//
+// });
+
+
 app.get("/home", function(req, res) {
 
   if (req.isAuthenticated()) {
+
     Post.find({}, function(err, foundPost) {
-      console.log(foundPost);
+      // console.log(foundPost);
       if (err) {
         console.log(err);
       } else {
-        res.render("home", {
-          posts: foundPost
-          // to sort the post by a key value
-          // orderedPost: foundPost.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
-        });
+        User.findOne({_id:req.user._id}, function(err, foundUser){
+          console.log(foundUser);
+          res.render("home", {
+            posts: foundPost,
+            favourites: foundUser.favourites
+            // to sort the post by a key value
+            // orderedPost: foundPost.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
+          });
+        })
+
       }
     });
   } else {
@@ -173,22 +206,67 @@ app.get("/write", function(req, res) {
 
 
 //for posts====================================================================
+app.get("/favourites", function(req, res){
+
+  if(req.isAuthenticated){
+
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }else{
+        Post.find({_id:{$in:foundUser.favourites}}, function(err, foundPost){
+
+          if (err) {
+            console.log(err);
+          }else{
+            res.render("favourites",{
+              title: "My favourite posts",
+              posts: foundPost,
+              favourites: foundUser.favourites
+            })
+          }
+
+        });//closes post
+
+      }//closes else in user
+
+    });//closes user
+
+  }else{
+    res.redirect("/");
+  }
+
+
+
+});//closes get request
+
 app.get("/kyRong", function(req, res) {
 
-  if (req.isAuthenticated) {
-    Post.find({
-      kyRong: "checked"
-    }, function(err, foundPost) {
-      if (err) {
+  if(req.isAuthenticated){
+
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(err){
         console.log(err);
-      } else {
-        res.render("categories", {
-          title: "Kỷ Rồng Posts",
-          posts: foundPost
-        });
-      }
-    });
-  } else {
+      }else{
+        Post.find({kyRong: "checked" }, function(err, foundPost){
+
+          if (err) {
+            console.log(err);
+          }else{
+            res.render("categories",{
+              title: "Kỷ Rồng Posts",
+              posts: foundPost,
+              favourites: foundUser.favourites
+            })
+          }
+
+        });//closes post
+
+      }//closes else in user
+
+    });//closes user
+
+  }else{
     res.redirect("/");
   }
 
@@ -197,20 +275,31 @@ app.get("/kyRong", function(req, res) {
 
 app.get("/pangea", function(req, res) {
 
-  if (req.isAuthenticated) {
-    Post.find({
-      pangea: "checked"
-    }, function(err, foundPost) {
-      if (err) {
+  if(req.isAuthenticated){
+
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(err){
         console.log(err);
-      } else {
-        res.render("categories", {
-          title: "Pangea Posts",
-          posts: foundPost
-        });
-      }
-    });
-  } else {
+      }else{
+        Post.find({pangea: "checked" }, function(err, foundPost){
+
+          if (err) {
+            console.log(err);
+          }else{
+            res.render("categories",{
+              title: "Pangea Posts",
+              posts: foundPost,
+              favourites: foundUser.favourites
+            })
+          }
+
+        });//closes post
+
+      }//closes else in user
+
+    });//closes user
+
+  }else{
     res.redirect("/");
   }
 
@@ -219,42 +308,65 @@ app.get("/pangea", function(req, res) {
 
 app.get("/lemuria", function(req, res) {
 
-  if (req.isAuthenticated) {
-    Post.find({
-      lemuria: "checked"
-    }, function(err, foundPost) {
-      if (err) {
+  if(req.isAuthenticated){
+
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(err){
         console.log(err);
-      } else {
-        res.render("categories", {
-          title: "Lemuria Posts",
-          posts: foundPost
-        });
-      }
-    });
-  } else {
+      }else{
+        Post.find({lemuria: "checked" }, function(err, foundPost){
+
+          if (err) {
+            console.log(err);
+          }else{
+            res.render("categories",{
+              title: "Lemuria Posts",
+              posts: foundPost,
+              favourites: foundUser.favourites
+            })
+          }
+
+        });//closes post
+
+      }//closes else in user
+
+    });//closes user
+
+  }else{
     res.redirect("/");
   }
+
 
 
 });
 
 app.get("/atlantis", function(req, res) {
 
-  if (req.isAuthenticated) {
-    Post.find({
-      atlantis: "checked"
-    }, function(err, foundPost) {
-      if (err) {
+  if(req.isAuthenticated){
+
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(err){
         console.log(err);
-      } else {
-        res.render("categories", {
-          title: "Atlantis Posts",
-          posts: foundPost
-        });
-      }
-    });
-  } else {
+      }else{
+        Post.find({atlantis: "checked" }, function(err, foundPost){
+
+          if (err) {
+            console.log(err);
+          }else{
+            res.render("categories",{
+              title: "Atlantis Posts",
+              posts: foundPost,
+              favourites: foundUser.favourites
+            })
+          }
+
+        });//closes post
+
+      }//closes else in user
+
+    });//closes user
+
+  }else{
     res.redirect("/");
   }
 
@@ -263,42 +375,82 @@ app.get("/atlantis", function(req, res) {
 
 app.get("/hienDay", function(req, res) {
 
-  if (req.isAuthenticated) {
-    Post.find({
-      hienDay: "checked"
-    }, function(err, foundPost) {
-      if (err) {
+  // if (req.isAuthenticated) {
+  //   Post.find({
+  //     hienDay: "checked"
+  //   }, function(err, foundPost) {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       res.render("categories", {
+  //         title: "Hiện đại Posts",
+  //         posts: foundPost
+  //       });
+  //     }
+  //   });
+  // } else {
+  //   res.redirect("/");
+  // }
+
+  if(req.isAuthenticated){
+
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(err){
         console.log(err);
-      } else {
-        res.render("categories", {
-          title: "Hiện đại Posts",
-          posts: foundPost
-        });
-      }
-    });
-  } else {
+      }else{
+        Post.find({hienDay: "checked" }, function(err, foundPost){
+
+          if (err) {
+            console.log(err);
+          }else{
+            res.render("categories",{
+              title: "Hiện đại Posts",
+              posts: foundPost,
+              favourites: foundUser.favourites
+            })
+          }
+
+        });//closes post
+
+      }//closes else in user
+
+    });//closes user
+
+  }else{
     res.redirect("/");
   }
+
 
 
 });
 
 app.get("/khac", function(req, res) {
 
-  if (req.isAuthenticated) {
-    Post.find({
-      khac: "checked"
-    }, function(err, foundPost) {
-      if (err) {
+  if(req.isAuthenticated){
+
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(err){
         console.log(err);
-      } else {
-        res.render("categories", {
-          title: "Khác Posts",
-          posts: foundPost
-        });
-      }
-    });
-  } else {
+      }else{
+        Post.find({khac: "checked" }, function(err, foundPost){
+
+          if (err) {
+            console.log(err);
+          }else{
+            res.render("categories",{
+              title: "Khác Posts",
+              posts: foundPost,
+              favourites: foundUser.favourites
+            })
+          }
+
+        });//closes post
+
+      }//closes else in user
+
+    });//closes user
+
+  }else{
     res.redirect("/");
   }
 
@@ -338,6 +490,63 @@ app.get("/khac", function(req, res) {
 //
 //
 // });
+
+app.post("/", function(req, res){
+
+  const userId = req.user._id;
+  const postId = req.body.data;
+  console.log(postId);
+  console.log(userId);
+
+
+    User.findOne({_id: userId}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }else{
+        if(foundUser){
+          console.log(foundUser);
+          foundUser.favourites.push(postId);
+          foundUser.save();
+        }else{
+          console.log("error, no user was found");
+        }
+      }
+    })
+
+    res.send("");
+});
+
+app.post("/deleteData", function(req, res){
+
+  const userId = req.user._id;
+  const postId = req.body.data;
+  console.log(postId);
+  console.log(userId);
+
+
+    User.findOne({_id: userId}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }else{
+        if(foundUser){
+          console.log(foundUser);
+          for (var i=0; i<foundUser.favourites.length; i++){
+            console.log("array in position " + i + " is " + foundUser.favourites[i]);
+            console.log("postId is " + postId);
+            if(foundUser.favourites[i]==postId){
+              foundUser.favourites.splice(i, 1);
+            }
+          }
+
+          foundUser.save();
+        }else{
+          console.log("error, no user was found");
+        }
+      }
+    })
+
+    res.send("");
+});
 
 app.post("/searchPosts", function(req, res) {
 
@@ -424,7 +633,8 @@ app.post("/user", function(req, res) {
               res.render("categories2", {
                 about: foundUser.about,
                 title: user,
-                posts: foundPost
+                posts: foundPost,
+                favourites: foundUser.favourites
               });
             }
           });
@@ -455,6 +665,9 @@ app.post("/remove", function(req, res) {
 
 });
 //----------------------------------------- update ----------------------------------------
+
+
+
 app.post("/update", function(req, res) {
   console.log(req.body.postID);
   const id = req.body.postID;
@@ -849,5 +1062,6 @@ if (port == null || port == "") {
 
 
 app.listen(port, function() {
+  console.log(port);
   console.log("server has started successfully");
 });
