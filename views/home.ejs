@@ -75,7 +75,7 @@
                <div class="margin-top">
 
 
-                 <% if((post.kyRong === "checked") || (post.pangea=== "checked") || (post.lemuria=== "checked") || (post.atlantis=== "checked") || (post.hienDay=== "checked") || (post.khac=== "checked")){%>
+                 <% if((post.kyRong === "checked") || (post.pangea=== "checked") || (post.lemuria=== "checked") || (post.atlantis=== "checked") || (post.hienDay=== "checked") || (post.khac=== "checked") || (post.hand=== "checked")){%>
                  <div class="mv">
 
                  <form class="mv2" action="/user" method="post">
@@ -185,6 +185,22 @@
 
 
               <%} %>
+              <% if(post.hand === "checked"){%>
+                          <div class="mv">
+
+                            <!-- <form class="mv2" action="/user" method="post">
+                              <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+                            </form>
+                            <p class="mv2"> in </p> -->
+
+                            <form class="mv2" action="/hand" method="post">
+                              <button class="btnLink" type="submit">Hand</button>
+                            </form>
+
+                          </div>
+
+
+                          <%} %>
               <div class="">
 
                 <p class="mv"><%=post.date%></p>

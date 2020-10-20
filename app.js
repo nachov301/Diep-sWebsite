@@ -60,6 +60,7 @@ const postSchema = {
   atlantis: String,
   hienDay: String,
   khac: String,
+  hand: String,
   url: String,
   likes: Number,
   readingTime: Number,
@@ -457,6 +458,39 @@ app.get("/khac", function(req, res) {
 
 });
 
+app.get("/hand", function(req, res) {
+
+  if(req.isAuthenticated){
+
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }else{
+        Post.find({hand: "checked" }, function(err, foundPost){
+
+          if (err) {
+            console.log(err);
+          }else{
+            res.render("categories",{
+              title: "Hand Posts",
+              posts: foundPost,
+              favourites: foundUser.favourites
+            })
+          }
+
+        });//closes post
+
+      }//closes else in user
+
+    });//closes user
+
+  }else{
+    res.redirect("/");
+  }
+
+
+});
+
 //=============================================POST request========================================================
 
 // app.post("/searchPosts", function(req, res){
@@ -608,6 +642,10 @@ app.post("/khac", function(req, res) {
   res.redirect("/khac");
 });
 
+app.post("/hand", function(req, res) {
+  res.redirect("/hand");
+});
+
 app.post("/user", function(req, res) {
   const user = req.body.userID;
   console.log(user);
@@ -688,6 +726,7 @@ app.post("/update", function(req, res) {
   var atlantis = "";
   var hienDay = "";
   var khac = "";
+  var hand = "";
 
   switch (category) {
     case "kyRong":
@@ -708,6 +747,9 @@ app.post("/update", function(req, res) {
     case "khac":
       khac = "checked";
       break;
+    case "hand":
+        hand = "checked";
+        break;
     default:
 
   }
@@ -738,6 +780,7 @@ app.post("/update", function(req, res) {
           foundItem.atlantis = atlantis;
           foundItem.hienDay = hienDay;
           foundItem.khac = khac;
+          foundItem.hand = hand;
 
           foundItem.visibility = visibility;
         foundItem.save();
@@ -905,6 +948,10 @@ app.post("/khac", function(req, res) {
   res.redirect("/khac");
 });
 
+app.post("/hand", function(req, res){
+  res.redirect("/hand");
+})
+
 app.post("/post", function(req, res) {
 
   // we use number to convert it into a number and be able to use different math operations :)
@@ -967,6 +1014,7 @@ app.post("/compose", function(req, res) {
   var atlantis = "";
   var hienDay = "";
   var khac = "";
+  var hand = "";
 
   switch (category) {
     case "kyRong":
@@ -986,6 +1034,9 @@ app.post("/compose", function(req, res) {
       break;
     case "khac":
       khac = "checked";
+      break;
+      case "hand":
+      hand = "checked";
       break;
     default:
 
@@ -1040,6 +1091,7 @@ app.post("/compose", function(req, res) {
     atlantis: atlantis,
     hienDay: hienDay,
     khac: khac,
+    hand: hand,
     url: url,
     likes: 1,
     readingTime: readTime,
