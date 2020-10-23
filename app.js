@@ -980,10 +980,20 @@ app.post("/post", function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("post", {
-        title: foundPost.title,
-        content: foundPost.content
-      });
+      User.findById({_id:req.user._id}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }else{
+          res.render("post", {
+            title: foundPost.title,
+            content: foundPost.content,
+            post: foundPost,
+            favourites: foundUser.favourites
+          });
+        }
+      })
+
+
     }
   })
 });

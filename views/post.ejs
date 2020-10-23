@@ -8,12 +8,179 @@
 
   <div class="container container-text">
     <h1 class="post-title"><%=title%></h1>
+    <% if((post.kyRong === "checked") || (post.pangea=== "checked") || (post.lemuria=== "checked") || (post.atlantis=== "checked") || (post.hienDay=== "checked") || (post.khac=== "checked") || (post.hand=== "checked")){%>
+    <div class="mv">
+
+    <form class="mv2" action="/user" method="post">
+     <button class="btnLink" type="submit" name="userID" value="<%=post.userName%>"><%= post.userName %></button>
+    </form>
+    <p class="mv2" style="margin: auto 0 auto 0"> in </p>
+    </div>
+
+    <%} %>
+    <% if(post.kyRong === "checked"){%>
+    <div class="mv">
+      <form class="mv2" action="/kyRong" method="post">
+        <button class="btnLink" type="submit">Hand</button>
+      </form>
+    </div>
+    <%} %>
+    <% if(post.pangea === "checked"){%>
+    <div class="mv">
+      <form class="mv2" action="/pangea" method="post">
+        <button class="btnLink" type="submit">Pangea</button>
+      </form>
+    </div>
+    <%} %>
+    <% if(post.lemuria === "checked"){%>
+    <div class="mv">
+      <form class="mv2" action="/lemuria" method="post">
+        <button class="btnLink" type="submit">Lemuria</button>
+      </form>
+    </div>
+    <%} %>
+    <% if(post.atlantis === "checked"){%>
+    <div class="mv">
+      <form class="mv2" action="/atlantis" method="post">
+        <button class="btnLink" type="submit">Atlantis</button>
+      </form>
+    </div>
+    <%} %>
+    <% if(post.hienDay === "checked"){%>
+    <div class="mv">
+      <form class="mv2" action="/hienDay" method="post">
+        <button class="btnLink" type="submit">Hand</button>
+      </form>
+    </div>
+    <%} %>
+    <% if(post.hand === "checked"){%>
+    <div class="mv">
+      <form class="mv2" action="/hand" method="post">
+        <button class="btnLink" type="submit">Hand</button>
+      </form>
+    </div>
+    <%} %>
+    <% if(post.khac === "checked"){%>
+    <div class="mv">
+      <form class="mv2" action="/khac" method="post">
+        <button class="btnLink" type="submit">Hand</button>
+      </form>
+    </div>
+    <%} %>
+    <div class="" style="margin-bottom:2rem" >
+
+      <p class="mv"><%=post.date%></p>
+      <p class="mv"><%= post.readingTime %> min read </p>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+       <form id="myFormID" class="mv" action="/" method="post">
+         <%var flag = false%>
+         <%for (var i=0; i<favourites.length; i++){%>
+
+           <%if ((favourites[i]==post._id) && (flag==false)) {%>
+            <%flag=true%>
+             <button class="btnLink fav go_button" type="submit" name="favouriteId" value="<%=post._id%>"><i class="fas fa-bookmark"></i></button>
+
+           <!-- <input class="uname_input" type="text" name="" value="" placeholder="here <%=j%>"> -->
+
+           <!-- <button class="btnLink fav go_button2" type="submit" name="favouriteId" value="<%=post._id%>"><i class="far fa-bookmark"></i></button> -->
+           <%}%>
+        <%}%>
+        <%if(flag==false){%>
+          <button class="btnLink fav go_button" type="submit" name="favouriteId" value="<%=post._id%>"><i class="far fa-bookmark"></i></button>
+        <%}%>
+       </form>
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    </div>
+
     <div class="row">
       <div class="col-12">
         <p class="post-p"><%=content%></p>
       </div>
     </div>
   </div>
+
+  <!-- for using jQuery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script>
+
+  // $("body").keypress(function(event){
+  //   $("h1").text(event.key);
+  // });
+
+  for (var i = 0; i < document.querySelectorAll(".go_button").length; i++) {
+  document.querySelectorAll(".go_button")[i].addEventListener("click",function(e){
+   e.preventDefault();
+  // with this.value im giving the value of the button which was pressed to the variable postId
+  var postId = this.value;
+  // calling the function sendData and passing postId as a paramether
+
+
+  // we find the class inside the element i inside this
+  if($(this).find("i").hasClass("far fa-bookmark")){
+    // this.innerHTML = "unsave";
+    console.log("if");
+    // we find the i element inside this element and we specify the class we have and the class we wanted to change it to
+    $(this).find("i").toggleClass("far fa-bookmark fas fa-bookmark");
+    sendData(postId);
+  }else{
+    console.log("else");
+    // this.innerHTML="save";
+    $(this).find("i").toggleClass("far fa-bookmark fas fa-bookmark");
+    deleteData(postId);
+
+  }
+    console.log(postId);
+  });
+  }
+
+  // get uName from uname-input
+  // let unameText = document.getElementsByClassName("uname_input").value;
+  function sendData(data){
+  $.ajax({
+  type: "POST",
+  url: "/",
+  contentType: "application/json",
+  data: JSON.stringify({data: data}),
+  /*
+  success:(data)=>{
+  console.log(data);
+  if (data != "") {
+  console.log(JSON.parse(data));
+  }
+  updatePage(JSON.parse(data));
+  }
+  */
+  });
+  }
+
+  function deleteData(data){
+  $.ajax({
+  type: "POST",
+  url: "/deleteData",
+  contentType: "application/json",
+  data: JSON.stringify({data: data}),
+  /*
+  success:(data)=>{
+  console.log(data);
+  if (data != "") {
+  console.log(JSON.parse(data));
+  }
+  updatePage(JSON.parse(data));
+  }
+  */
+  });
+  }
+
+
+  // })
+
+
+  </script>
+
+
 </body>
 
 
