@@ -5,6 +5,11 @@ body {
 label {
   display: block;
 }
+.card-body{
+  overflow: hidden;
+  height: 300px;
+}
+
 /* +++++++++++++++++++++++++++++++back-to-top button++++++++++++++++++++++++++++ */
 .fa-bookmark{
   margin-left: 5px;
@@ -683,6 +688,10 @@ hr {
   p {
     margin-top: 0;
     margin-bottom: 0;
+}
+.card-body{
+  overflow: auto;
+  height: auto;
 }
 .navbar-light .navbar-toggler {
     color: rgba(0,0,0,.5);
