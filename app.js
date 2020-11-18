@@ -108,9 +108,9 @@ app.get("/myProfile", function(req, res) {
 
 });
 //-----------------------------------------------signUp here--------------------------------------------------------
-// app.get("/signUp", function(req, res) {
-//   res.render("signUp");
-// });
+app.get("/signUp", function(req, res) {
+  res.render("signUp");
+});
 
 app.get("/", function(req, res) {
   res.render("login", {
